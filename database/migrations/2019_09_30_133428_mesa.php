@@ -17,7 +17,7 @@ class Mesa extends Migration
             $table->bigIncrements('id');
             $table->boolean('status');
             $table->integer('number');
-            $table->timestamp('created_at')->nullable();
+            $table->timestamps();
             $table->softDeletes();
         });
     }
