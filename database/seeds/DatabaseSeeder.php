@@ -16,7 +16,14 @@ class DatabaseSeeder extends Seeder
             MeserosTableSeeder::class,
             MesaMeserosTableSeeder::class,
             CategoriasTableSeeder::class,
-            PlatillosTableSeeder::class
+            PlatillosTableSeeder::class,
+            PlatilloMesaTableSeeder::class,
+            InventarioTableSeeder::class,
+            ProveedoresTableSeeder::class,
+            ProductoTableSeeder::class,
+            EntradaProductoTableSeeder::class,
+            TicketTableSeeder::class,
+            GananciasTableSeeder::class
         ]);
     }
 }
