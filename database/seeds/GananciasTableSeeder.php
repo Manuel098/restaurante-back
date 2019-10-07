@@ -15,8 +15,8 @@ class GananciasTableSeeder extends Seeder
     {
         $faker =Faker::create();
         for($i=1; $i<100;$i++){
-            Inventario::create([
-                'ticket_id' => $faker->text($maxNbChars = 10)
+            Ganancias::create([
+                'ticket_id' => $faker->numberBetween($min = 1, $max = 99)
             ]);
         }
     }

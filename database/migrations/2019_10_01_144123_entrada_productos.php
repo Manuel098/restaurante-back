@@ -13,7 +13,7 @@ class EntradaProductos extends Migration
      */
     public function up()
     {
-        Schema::create('enrada_producto', function (Blueprint $table) {
+        Schema::create('entrada_producto', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('proveedor_id');
             $table->unsignedBigInteger('producto_id');
