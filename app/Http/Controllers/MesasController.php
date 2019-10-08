@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use App\Mesas;
 
 class MesasController extends Controller
 {
@@ -13,7 +15,12 @@ class MesasController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $mesas = Mesas::all();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response($mesas, 201);
     }
 
     /**
