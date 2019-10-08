@@ -20,3 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('/mesas', 'MesasController');
 Route::resource('/inventario', 'InventarioController');
 Route::resource('/meseros', 'MeserosController');
+Route::resource('/mesamesero', 'MesaMeseroController');
+Route::resource('/categorias', 'CategoriasController');
+Route::resource('/platillos', 'PlatillosController');
+Route::resource('/platillomesa', 'PlatilloMesaController');
+Route::resource('/proveedores', 'ProveedoresController');
+Route::resource('/producto', 'ProductoController');
+Route::resource('/entradaproducto', 'EntradaProductoController');
+Route::resource('/ticket', 'TicketController');
+Route::resource('/ganancias', 'GananciasController');
