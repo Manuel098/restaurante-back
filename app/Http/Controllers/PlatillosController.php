@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use App\Platillos;
 
 class PlatillosController extends Controller
 {
@@ -13,7 +15,12 @@ class PlatillosController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $platillos = Platillos::all();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response($platillos, 201);   
     }
 
     /**

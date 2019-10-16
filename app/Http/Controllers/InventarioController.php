@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use App\Inventario;
 
 class InventarioController extends Controller
 {
@@ -13,7 +15,12 @@ class InventarioController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $inventario = Inventario::all();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response($inventario, 201);        
     }
 
     /**

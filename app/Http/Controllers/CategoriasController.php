@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use App\Categorias;
 
 class CategoriasController extends Controller
 {
@@ -13,7 +15,12 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $categorias = Categorias::all();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response($categorias, 201);
     }
 
     /**

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use App\Platillo_Mesa;
 
 class PlatilloMesaController extends Controller
 {
@@ -13,7 +15,12 @@ class PlatilloMesaController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $platillo_mesa = Platillo_Mesa::all();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response($platillo_mesa, 201);
     }
 
     /**
