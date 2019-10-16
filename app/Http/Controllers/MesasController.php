@@ -31,7 +31,18 @@ class MesasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            if($request->status==null||$request->number==null){
+                return response('Need more data', 409);
+            }
+            $mesa = new Mesas;
+            $mesa->status = $request->status;
+            $mesa->number = $request->number;
+            $mesa->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -42,7 +53,12 @@ class MesasController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $mesa = Mesas::findOrFail($id);
+            return response($mesa, 201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 
     /**
@@ -54,7 +70,18 @@ class MesasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $mesa = Mesas::findOrFail($id);
+            if($request->status!=null){
+                $mesa->status = $request->status;
+            }if($request->number!=null){
+                $mesa->number = $request->number;
+            }
+            $mesa->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -65,6 +92,13 @@ class MesasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $mesa = Mesas::findOrFail($id);
+            $mesa->delete();
+    
+            return response("El recurso ha sido borrado",201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 }

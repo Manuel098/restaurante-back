@@ -2,6 +2,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+Vue.component('hola-component', require('./components/hola.vue').default);
 
 //import vuetify
 import Vuetify from "vuetify";
