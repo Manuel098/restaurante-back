@@ -31,7 +31,22 @@ class PlatillosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            if($request->nombre==null||$request->tipo==null||$request->precio==null
+            ||$request->URL==null||$request->categoria_id==null){
+                return response('Need more data', 409);
+            }
+            $platillos = new Platillos;
+            $platillos->nombre = $request->nombre;
+            $platillos->tipo = $request->tipo;
+            $platillos->precio = $request->precio;
+            $platillos->URL= $request->URL;
+            $platillos->categoria_id = $request->categoria_id;
+            $platillos->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -42,7 +57,12 @@ class PlatillosController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $platillos = Platillos::findOrFail($id);
+            return response($platillos, 201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 
     /**
@@ -54,7 +74,24 @@ class PlatillosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $platillos = Platillos::findOrFail($id);
+            if($request->nombre!=null){
+                $platillos->nombre = $request->nombre;
+            }if($request->tipo!=null){
+                $platillos->tipo = $request->tipo;
+            }if($request->precio!=null){
+                $platillos->precio = $request->precio;
+            }if($request->URL!=null){
+                $platillos->URL = $request->URL;
+            }if($request->categoria_id!=null){
+                $platillos->categoria_id = $request->categoria_id;
+            }
+            $platillos->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -65,6 +102,13 @@ class PlatillosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $platillos = Platillos::findOrFail($id);
+            $platillos->delete();
+    
+            return response("El recurso ha sido borrado",201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 }

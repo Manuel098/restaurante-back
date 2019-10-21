@@ -31,7 +31,19 @@ class InventarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            if($request->URL==null||$request->nombre==null||$request->cantidad){
+                return response('Need more data', 409);
+            }
+            $inventario = new Inventario;
+            $inventario->URL = $request->URL;
+            $inventario->nombre = $request->nombre;
+            $inventario->cantidad = $request->cantidad;
+            $inventario->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -42,7 +54,12 @@ class InventarioController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $inventario = Inventario::findOrFail($id);
+            return response($inventario, 201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 
     /**
@@ -54,7 +71,20 @@ class InventarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $inventario = Inventario::findOrFail($id);
+            if($request->URL!=null){
+                $inventario->URL = $request->URL;
+            }if($request->nombre!=null){
+                $inventario->nombre = $request->nombre;
+            }if($request->cantidad!=null){
+                $inventario->cantidad = $request->cantidad;
+            }
+            $inventario->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -65,6 +95,13 @@ class InventarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $inventario = Inventario::findOrFail($id);
+            $inventario->delete();
+    
+            return response("El recurso ha sido borrado",201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 }

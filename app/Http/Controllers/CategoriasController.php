@@ -31,7 +31,18 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            if($request->nombre==null||$request->URL==null){
+                return response('Need more data', 409);
+            }
+            $categorias = new Categorias;
+            $categorias->nombre = $request->nombre;
+            $categorias->URL = $request->URL;
+            $categorias->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -42,7 +53,12 @@ class CategoriasController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $categorias = Categorias::findOrFail($id);
+            return response($categorias, 201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 
     /**
@@ -54,7 +70,18 @@ class CategoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $categorias = Categorias::findOrFail($id);
+            if($request->nombre!=null){
+                $categorias->nombre = $request->nombre;
+            }if($request->URL!=null){
+                $categorias->URL = $request->URL;
+            }
+            $categorias->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -65,6 +92,13 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $categorias = Categorias::findOrFail($id);
+            $categorias->delete();
+    
+            return response("El recurso ha sido borrado",201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 }

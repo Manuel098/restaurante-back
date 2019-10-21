@@ -31,7 +31,18 @@ class PlatilloMesaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            if($request->platillo_id==null||$request->mesa_id==null){
+                return response('Need more data', 409);
+            }
+            $platillo_mesa = new Platillo_Mesa;
+            $platillo_mesa->platillo_id = $request->platillo_id;
+            $platillo_mesa->mesa_id = $request->mesa_id;
+            $platillo_mesa->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -42,7 +53,12 @@ class PlatilloMesaController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $platillo_mesa = Platillo_Mesa::findOrFail($id);
+            return response($platillo_mesa, 201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 
     /**
@@ -54,7 +70,18 @@ class PlatilloMesaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $platillo_mesa = Platillo_Mesa::findOrFail($id);
+            if($request->platillo_id!=null){
+                $platillo_mesa->platillo_id = $request->platillo_id;
+            }if($request->mesa_id!=null){
+                $platillo_mesa->mesa_id = $request->mesa_id;
+            }
+            $platillo_mesa->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -65,6 +92,13 @@ class PlatilloMesaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $platillo_mesa = Platillo_Mesa::findOrFail($id);
+            $platillo_mesa->delete();
+    
+            return response("El recurso ha sido borrado",201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 }
