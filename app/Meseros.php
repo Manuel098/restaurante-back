@@ -17,4 +17,8 @@ class Meseros extends Model
     protected $fillable = [
         'nombre', 'number'
     ];
+
+    public function pivot(){
+        return $this->hasMany('App\Mesa_Meseros', 'mesero_id');
+    }
 }

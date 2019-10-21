@@ -18,4 +18,7 @@ class Mesa_Meseros extends Model
     protected $fillable = [
         'mesero_id', 'mesa_id'
     ];
+    public function mesas(){
+        return $this->hasOne('App\Mesas','id','mesa_id');
+    }
 }

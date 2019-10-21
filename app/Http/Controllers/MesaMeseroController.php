@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Meseros;
 
 class MesaMeseroController extends Controller
 {
@@ -13,7 +14,22 @@ class MesaMeseroController extends Controller
      */
     public function index()
     {
-        //
+        $Data=array();
+        $meseros = Meseros::with('pivot.mesas')->select('id','number','nombre')->get();
+        foreach($meseros as $mesero){
+            $mesas = array();
+            foreach($mesero->pivot as $mesData){
+                array_push($mesas, $mesData->mesas);
+            }
+            $newData = array(
+                'id' =>  $mesero->id,   
+                'nombre'=> $mesero->nombre,
+                'number' => $mesero->number,
+                'mesas' => $mesas
+            );
+            array_push($Data, $newData);
+        }
+        return response($Data, 201);
     }
 
     /**
