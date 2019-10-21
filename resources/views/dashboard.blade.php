@@ -33,7 +33,7 @@
 <body>
     <div class="content" id="app">
         <v-app>
-            <helloworld-component><helloworld-component>
+            <index-component><index-component>
         </v-app>
     </div>
 </body>
