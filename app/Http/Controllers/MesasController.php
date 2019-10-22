@@ -33,7 +33,7 @@ class MesasController extends Controller
     {
         try {
             if($request->status==null||$request->number==null){
-                return response('Need more data', 409);
+                return response('Need more data', 411);
             }
             $mesa = new Mesas;
             $mesa->status = $request->status;
