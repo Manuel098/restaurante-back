@@ -22,7 +22,7 @@
     </v-app-bar>
 
     <v-content>
-      <Home />
+      <router-outlet></router-outlet>
     </v-content>
   </v-app>
 </template>

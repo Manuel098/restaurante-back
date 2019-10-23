@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use App\Proveedores;
 
 class ProveedoresController extends Controller
 {
@@ -13,7 +15,12 @@ class ProveedoresController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $roles = Roles::all();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response($roles, 201);
     }
 
     /**
@@ -24,7 +31,21 @@ class ProveedoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            if($request->nombre==null||$request->descripcion==null||$request->telefono==null||$request->email==null){
+                return response('Need more data', 409);
+            }
+            $rol = new Proveedores;
+            $rol->nombre = $request->nombre;
+            $rol->descripcion = $request->descripcion;
+            $rol->telefono = $request->telefono;
+            $rol->email = $request->email;
+            $rol->save();
+        } catch(QueryException $e) {
+
+            return ($e=="SQLSTATE[23000]")?response( 'Ingreso una dato ya existente', 409):response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -35,7 +56,12 @@ class ProveedoresController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $rol = Proveedores::findOrFail($id);
+            return response($rol, 201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 
     /**
@@ -47,7 +73,23 @@ class ProveedoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $rol = Proveedores::findOrFail($id);
+            if($request->nombre!=null){
+                $rol->nombre = $request->nombre;
+            }if($request->descripcion!=null){
+                $rol->descripcion = $request->descripcion;
+            }if($request->telefono!=null){
+                $rol->telefono = $request->telefono;
+            }
+            if($request->email!=null){
+                $rol->email = $request->email;
+            }
+            $rol->save();
+        } catch(QueryException $e) {
+            return ($e=="SQLSTATE[23000]")?response( 'El slug ya existe', 409):response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -58,6 +100,13 @@ class ProveedoresController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $rol = Proveedores::findOrFail($id);
+            $rol->delete();
+    
+            return response("El recurso ha sido borrado",201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 }
