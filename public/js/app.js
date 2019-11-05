@@ -1839,6 +1839,14 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home */ "./resources/js/components/Home.vue");
+/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login */ "./resources/js/components/Login.vue");
+/* harmony import */ var _Signin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Signin */ "./resources/js/components/Signin.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1855,19 +1863,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'App',
+  name: "App",
   components: {
-    Home: _Home__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Home: _Home__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Login: _Login__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Signin: _Signin__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
-      dialogIn: true
+      initialDialog: false,
+      initialSign: false
     };
   },
   methods: {
-    changeDialog: function changeDialog() {
-      this.dialog = true;
+    handleLogin: function handleLogin() {
+      this.initialDialog = true;
+    },
+    handleSignin: function handleSignin() {
+      this.initialSign = true;
+    },
+    setInitial: function setInitial(log) {
+      this.initialDialog = log;
+    },
+    setSign: function setSign(sign) {
+      this.initialSign = sign;
     }
   },
   mounted: function mounted() {}
@@ -1894,20 +1916,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'CardIn',
+  name: "CardIn",
   props: ["title", "source"],
   data: function data() {
     return {
       titulo: this.title,
-      source: this.source
+      sourceImg: this.source
     };
   },
-  methods: {
-    hola: function hola() {
-      console.log(source);
-    }
-  },
+  methods: {},
   mounted: function mounted() {}
 });
 
@@ -1923,8 +1945,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CardIndex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardIndex */ "./resources/js/components/CardIndex.vue");
-/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login */ "./resources/js/components/Login.vue");
-/* harmony import */ var _Signin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Signin */ "./resources/js/components/Signin.vue");
 //
 //
 //
@@ -1964,25 +1984,120 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Home',
-  props: ['dialog'],
+  name: "Home",
   data: function data() {
-    return {
-      dialog2: this.dialog
-    };
+    return {};
   },
   components: {
-    CardIn: _CardIndex__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Login: _Login__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Signin: _Signin__WEBPACK_IMPORTED_MODULE_2__["default"]
+    CardIn: _CardIndex__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  mounted: function mounted() {
-    console.log(this.dialog);
-  },
+  mounted: function mounted() {},
   methods: {}
 });
 
@@ -2028,16 +2143,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["dial"],
   name: 'Login',
+  props: ["dialogShared"],
   data: function data() {
     return {
-      dialog3: false,
       valid: true,
       user: '',
       userRules: [function (v) {
-        return !!v || 'User is required';
+        return !!v || 'Email is required';
+      }, function (v) {
+        return /.+@.+\..+/.test(v) || 'E-mail must be valid';
       }],
       password: '',
       passRules: [function (v) {
@@ -2045,8 +2163,12 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
-  mounted: function mounted() {
-    console.log(this.dial);
+  mounted: function mounted() {},
+  methods: {
+    changeInitial: function changeInitial() {
+      this.$emit("log", false);
+      this.$refs.form.reset();
+    }
   }
 });
 
@@ -2100,27 +2222,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Signin',
+  props: ["signShared"],
   data: function data() {
     return {
-      dialog: true,
       valid: true,
       user: '',
       userRules: [function (v) {
         return !!v || 'User is required';
+      }],
+      email: '',
+      emailRules: [function (v) {
+        return !!v || 'E-mail is required';
+      }, function (v) {
+        return /.+@.+\..+/.test(v) || 'E-mail must be valid';
       }],
       password: '',
       passRules: [function (v) {
         return !!v || 'Password is requiered';
       }, function (v) {
         return v && v.length > 8 || 'Password must be at least 8 characters';
-      }],
-      select: null,
-      items: ['admin', 'waiter', 'common']
+      }]
     };
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {},
+  methods: {
+    changeSign: function changeSign() {
+      this.$emit("sign", false);
+      this.$refs.form.reset();
+    }
+  }
 });
 
 /***/ }),
@@ -6570,7 +6703,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css":
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css?bdb9":
 /*!***********************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vuetify/dist/vuetify.min.css ***!
   \***********************************************************************************************************************************/
@@ -6602,7 +6735,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.back {\r\n  background: url(" + escape(__webpack_require__(/*! ../public/img/back.jpeg */ "./resources/js/public/img/back.jpeg")) + ");\r\n  background-size: cover;\n}\n#inspire{\r\n  background: none;\n}\n.CardContainer  div{\r\n  display: inline-block;\r\n  margin-right: 12px;\r\n  margin-bottom: 12px;\n}\r\n", ""]);
+exports.push([module.i, "\n.back {\r\n  background: url(" + escape(__webpack_require__(/*! ./public/img/back.jpeg */ "./resources/js/components/public/img/back.jpeg")) + ");\r\n  background-size: cover;\n}\n#inspire {\r\n  background: none;\n}\r\n/*.CardContainer div {\r\n  display: inline-block;\r\n  margin-right: 12px;\r\n  margin-bottom: 12px;\r\n}*/\r\n", ""]);
 
 // exports
 
@@ -38112,41 +38245,76 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-app",
+    "v-layout",
     [
       _c(
-        "v-toolbar",
-        { attrs: { app: "", fixed: "" } },
+        "v-flex",
+        { attrs: { xs12: "" } },
         [
-          _c("v-toolbar-title", [_vm._v("FOOD FOLKS")]),
+          _c("Login", {
+            attrs: { dialogShared: _vm.initialDialog },
+            on: { log: _vm.setInitial }
+          }),
           _vm._v(" "),
-          _c("div", { staticClass: "flex-grow-1" }),
+          _c("Signin", {
+            attrs: { signShared: _vm.initialSign },
+            on: { sign: _vm.setSign }
+          }),
           _vm._v(" "),
           _c(
-            "v-toolbar-items",
+            "v-toolbar",
+            { attrs: { dark: "", fixed: "" } },
             [
               _c(
-                "v-btn",
-                {
-                  attrs: { text: "" },
-                  on: {
-                    click: function($event) {
-                      return _vm.changeDialog()
-                    }
-                  }
-                },
-                [_vm._v("Log in")]
+                "router-link",
+                { attrs: { to: "/", exact: "", tag: "h1" } },
+                [_c("v-toolbar-title", [_vm._v("FOOD FOLKS")])],
+                1
               ),
               _vm._v(" "),
-              _c("v-btn", { attrs: { text: "" } }, [_vm._v("Sign in")])
+              _c("div", { staticClass: "flex-grow-1" }),
+              _vm._v(" "),
+              _c(
+                "v-toolbar-items",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { text: "" },
+                      on: {
+                        click: function($event) {
+                          return _vm.handleLogin()
+                        }
+                      }
+                    },
+                    [_vm._v("Log in")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { text: "" },
+                      on: {
+                        click: function($event) {
+                          return _vm.handleSignin()
+                        }
+                      }
+                    },
+                    [_vm._v("Sign in")]
+                  )
+                ],
+                1
+              )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("router-view"),
+          _vm._v(" "),
+          _c("home")
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("Home", { attrs: { dialog: this.dialogIn } })
+      )
     ],
     1
   )
@@ -38174,18 +38342,34 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-card",
-    { staticClass: "mx-auto", attrs: { "max-width": "400px" } },
+    "v-layout",
     [
-      _c("v-img", {
-        staticClass: "white--text",
-        attrs: { height: "180px", src: _vm.source }
-      }),
-      _vm._v(" "),
-      _c("v-card-text", [
-        _c("span", { staticClass: "title" }, [_vm._v(_vm._s(_vm.titulo))]),
-        _c("br")
-      ])
+      _c(
+        "v-flex",
+        { attrs: { xs12: "" } },
+        [
+          _c(
+            "v-card",
+            { staticClass: "mx-auto", attrs: { "max-width": "400px" } },
+            [
+              _c("v-img", {
+                staticClass: "white--text",
+                attrs: { height: "180px", src: _vm.sourceImg }
+              }),
+              _vm._v(" "),
+              _c("v-card-text", [
+                _c("span", { staticClass: "title" }, [
+                  _vm._v(_vm._s(_vm.titulo))
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )
@@ -38220,105 +38404,207 @@ var render = function() {
         "v-app",
         { attrs: { id: "inspire" } },
         [
-          _c(
-            "v-content",
-            [
-              _c("v-container", { attrs: { fluid: "", "fill-height": "" } }, [
+          _c("v-container", { attrs: { fluid: "" } }, [
+            _c(
+              "section",
+              { staticClass: "CardContainer", attrs: { align: "center" } },
+              [
                 _c(
-                  "section",
-                  { staticClass: "CardContainer", attrs: { align: "center" } },
+                  "v-row",
                   [
                     _c(
-                      "div",
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "6", lg: "4" } },
                       [
-                        _c("CardIn", {
-                          attrs: {
-                            title: "Menu",
-                            source:
-                              "https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706_960_720.jpg"
-                          }
-                        })
+                        _c(
+                          "router-link",
+                          { attrs: { to: "/menu", exact: "" } },
+                          [
+                            _c(
+                              "v-card",
+                              [
+                                _c("v-img", {
+                                  staticClass: "white--text",
+                                  attrs: {
+                                    height: "180px",
+                                    src:
+                                      "https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706_960_720.jpg"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("v-card-text", [
+                                  _c("span", { staticClass: "title" }, [
+                                    _vm._v("Menú")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("br")
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
                       ],
                       1
                     ),
                     _vm._v(" "),
                     _c(
-                      "div",
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "6", lg: "4" } },
                       [
-                        _c("CardIn", {
-                          attrs: {
-                            title: "Generar cuenta",
-                            source:
-                              "https://cdn.pixabay.com/photo/2016/07/15/21/07/credit-card-1520400_960_720.jpg"
-                          }
-                        })
+                        _c(
+                          "v-card",
+                          [
+                            _c("v-img", {
+                              staticClass: "white--text",
+                              attrs: {
+                                height: "180px",
+                                src:
+                                  "https://cdn.pixabay.com/photo/2016/07/15/21/07/credit-card-1520400_960_720.jpg"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-card-text", [
+                              _c("span", { staticClass: "title" }, [
+                                _vm._v("Generar cuenta")
+                              ]),
+                              _vm._v(" "),
+                              _c("br")
+                            ])
+                          ],
+                          1
+                        )
                       ],
                       1
                     ),
                     _vm._v(" "),
                     _c(
-                      "div",
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "6", lg: "4" } },
                       [
-                        _c("CardIn", {
-                          attrs: {
-                            title: "Asignar mesero",
-                            source:
-                              "https://cdn.pixabay.com/photo/2017/06/06/09/22/waitress-2376728_960_720.jpg"
-                          }
-                        })
+                        _c(
+                          "v-card",
+                          [
+                            _c("v-img", {
+                              staticClass: "white--text",
+                              attrs: {
+                                height: "180px",
+                                src:
+                                  "https://cdn.pixabay.com/photo/2017/06/06/09/22/waitress-2376728_960_720.jpg"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-card-text", [
+                              _c("span", { staticClass: "title" }, [
+                                _vm._v("Asignar mesero")
+                              ]),
+                              _vm._v(" "),
+                              _c("br")
+                            ])
+                          ],
+                          1
+                        )
                       ],
                       1
                     ),
                     _vm._v(" "),
                     _c(
-                      "div",
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "6", lg: "4" } },
                       [
-                        _c("CardIn", {
-                          attrs: {
-                            title: "Proveedores",
-                            source:
-                              "https://cdn.pixabay.com/photo/2017/05/23/22/36/vegetables-2338824_960_720.jpg"
-                          }
-                        })
+                        _c(
+                          "v-card",
+                          [
+                            _c("v-img", {
+                              staticClass: "white--text",
+                              attrs: {
+                                height: "180px",
+                                src:
+                                  "https://cdn.pixabay.com/photo/2017/05/23/22/36/vegetables-2338824_960_720.jpg"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-card-text", [
+                              _c("span", { staticClass: "title" }, [
+                                _vm._v("Proveedores")
+                              ]),
+                              _vm._v(" "),
+                              _c("br")
+                            ])
+                          ],
+                          1
+                        )
                       ],
                       1
                     ),
                     _vm._v(" "),
                     _c(
-                      "div",
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "6", lg: "4" } },
                       [
-                        _c("CardIn", {
-                          attrs: {
-                            title: "Stock",
-                            source:
-                              "https://cdn.pixabay.com/photo/2018/02/24/07/48/food-3177460_960_720.jpg"
-                          }
-                        })
+                        _c(
+                          "v-card",
+                          [
+                            _c("v-img", {
+                              staticClass: "white--text",
+                              attrs: {
+                                height: "180px",
+                                src:
+                                  "https://cdn.pixabay.com/photo/2018/02/24/07/48/food-3177460_960_720.jpg"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-card-text", [
+                              _c("span", { staticClass: "title" }, [
+                                _vm._v("Stock")
+                              ]),
+                              _vm._v(" "),
+                              _c("br")
+                            ])
+                          ],
+                          1
+                        )
                       ],
                       1
                     ),
                     _vm._v(" "),
                     _c(
-                      "div",
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6", md: "6", lg: "4" } },
                       [
-                        _c("CardIn", {
-                          attrs: {
-                            title: "Efectivo total",
-                            source:
-                              "https://cdn.pixabay.com/photo/2014/10/23/10/10/dollar-499481_960_720.jpg"
-                          }
-                        })
+                        _c(
+                          "v-card",
+                          [
+                            _c("v-img", {
+                              staticClass: "white--text",
+                              attrs: {
+                                height: "180px",
+                                src:
+                                  "https://cdn.pixabay.com/photo/2014/10/23/10/10/dollar-499481_960_720.jpg"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-card-text", [
+                              _c("span", { staticClass: "title" }, [
+                                _vm._v("Efectivo total")
+                              ]),
+                              _vm._v(" "),
+                              _c("br")
+                            ])
+                          ],
+                          1
+                        )
                       ],
                       1
                     )
-                  ]
+                  ],
+                  1
                 )
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("Login", { attrs: { dial: this.dialog2 } })
+              ],
+              1
+            )
+          ])
         ],
         1
       )
@@ -38357,11 +38643,11 @@ var render = function() {
         {
           attrs: { persistent: "", "max-width": "300" },
           model: {
-            value: this.dialog3,
+            value: _vm.dialogShared,
             callback: function($$v) {
-              _vm.$set(this, "dialog3", $$v)
+              _vm.dialogShared = $$v
             },
-            expression: "this.dialog3"
+            expression: "dialogShared"
           }
         },
         [
@@ -38425,9 +38711,20 @@ var render = function() {
                   _c(
                     "v-card-actions",
                     [
-                      _c("v-btn", { attrs: { block: "", color: "primary" } }, [
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c("v-btn", { attrs: { text: "", color: "primary" } }, [
                         _vm._v("Log In")
-                      ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { text: "", color: "error" },
+                          on: { click: _vm.changeInitial }
+                        },
+                        [_vm._v("Cancel")]
+                      )
                     ],
                     1
                   )
@@ -38475,11 +38772,11 @@ var render = function() {
         {
           attrs: { persistent: "", "max-width": "300" },
           model: {
-            value: _vm.dialog,
+            value: this.signShared,
             callback: function($$v) {
-              _vm.dialog = $$v
+              _vm.$set(this, "signShared", $$v)
             },
-            expression: "dialog"
+            expression: "this.signShared"
           }
         },
         [
@@ -38523,6 +38820,21 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-text-field", {
                         attrs: {
+                          rules: _vm.emailRules,
+                          label: "E-mail",
+                          required: ""
+                        },
+                        model: {
+                          value: _vm.email,
+                          callback: function($$v) {
+                            _vm.email = $$v
+                          },
+                          expression: "email"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: {
                           type: "password",
                           counter: 8,
                           rules: _vm.passRules,
@@ -38536,26 +38848,6 @@ var render = function() {
                           },
                           expression: "password"
                         }
-                      }),
-                      _vm._v(" "),
-                      _c("v-select", {
-                        attrs: {
-                          items: _vm.items,
-                          rules: [
-                            function(v) {
-                              return !!v || "User Type is required"
-                            }
-                          ],
-                          label: "User Type",
-                          required: ""
-                        },
-                        model: {
-                          value: _vm.select,
-                          callback: function($$v) {
-                            _vm.select = $$v
-                          },
-                          expression: "select"
-                        }
                       })
                     ],
                     1
@@ -38564,9 +38856,20 @@ var render = function() {
                   _c(
                     "v-card-actions",
                     [
-                      _c("v-btn", { attrs: { block: "", color: "primary" } }, [
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c("v-btn", { attrs: { text: "", color: "primary" } }, [
                         _vm._v("Sign In")
-                      ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { text: "", color: "error" },
+                          on: { click: _vm.changeSign }
+                        },
+                        [_vm._v("Cancel")]
+                      )
                     ],
                     1
                   )
@@ -87925,7 +88228,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vue__;
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css");
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css?bdb9");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -88447,10 +88750,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/public/img/back.jpeg":
-/*!*******************************************!*\
-  !*** ./resources/js/public/img/back.jpeg ***!
-  \*******************************************/
+/***/ "./resources/js/components/public/img/back.jpeg":
+/*!******************************************************!*\
+  !*** ./resources/js/components/public/img/back.jpeg ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 

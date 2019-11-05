@@ -1,34 +1,54 @@
-/* eslint-disable */
 <template>
-  <v-app>
-    <v-toolbar app fixed>
-      <v-toolbar-title>FOOD FOLKS</v-toolbar-title>
-      <div class="flex-grow-1"></div>
-      <v-toolbar-items>
-        <v-btn @click="changeDialog()" text>Log in</v-btn>
-        <v-btn text>Sign in</v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
-    <Home :dialog="this.dialogIn"/>
-  </v-app>
+  <v-layout>
+    <v-flex xs12>
+      <Login :dialogShared="initialDialog" @log="setInitial" />
+      <Signin :signShared="initialSign" @sign="setSign" />
+      <v-toolbar dark fixed>
+        <router-link to="/" exact tag="h1">
+          <v-toolbar-title>FOOD FOLKS</v-toolbar-title>
+        </router-link>
+        <div class="flex-grow-1"></div>
+        <v-toolbar-items>
+          <v-btn text @click="handleLogin()">Log in</v-btn>
+          <v-btn text @click="handleSignin()">Sign in</v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
+      <router-view></router-view>
+      <home></home>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
 import Home from './Home';
+import Login from "./Login";
+import Signin from "./Signin";
+
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Home,
+    Login,
+    Signin
   },
-  data: () => ({  
-    dialogIn: true
+  data: () => ({
+    initialDialog: false,
+    initialSign: false
   }),
   methods: {
-    changeDialog(){
-      this.dialog=true;
+    handleLogin() {
+      this.initialDialog = true;
+    },
+    handleSignin() {
+      this.initialSign = true;
+    },
+    setInitial(log) {
+      this.initialDialog = log;
+    },
+    setSign(sign) {
+      this.initialSign = sign;
     }
   },
-  mounted(){
-},
+  mounted() {}
 };
 </script>

@@ -43,8 +43,9 @@
 </template>
 
 <script>
-import agregar from './agregar.vue'
+import agregar from '../components/agregar'
 export default {
+    name: 'menu',
     data() {
         return {
             menu:[

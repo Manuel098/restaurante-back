@@ -33,7 +33,7 @@ class CategoriasController extends Controller
     {
         try {
             if($request->nombre==null||$request->URL==null){
-                return response('Need more data', 409);
+                return response('Need more data', 411);
             }
             $categorias = new Categorias;
             $categorias->nombre = $request->nombre;

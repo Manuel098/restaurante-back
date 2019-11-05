@@ -1,8 +1,8 @@
 <template>
     <v-row justify="center">
-        <v-dialog v-model="this.dialog3" persistent max-width="300">
+        <v-dialog v-model="dialogShared" persistent max-width="300">
             <v-form ref="form" v-model="valid">
-            <v-card>
+            <v-card> 
                 <v-card-title>
                     <span class="headline">Log in</span>
                 </v-card-title>
@@ -22,7 +22,9 @@
                 ></v-text-field>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn block color="primary">Log In</v-btn>
+                    <v-spacer/>
+                    <v-btn text color="primary">Log In</v-btn>
+                    <v-btn text color="error" v-on:click="changeInitial">Cancel</v-btn>
                 </v-card-actions>
             </v-card>
             </v-form>
@@ -31,14 +33,14 @@
 </template>
 <script>
 export default {
-    props: ["dial"],
     name: 'Login',
+    props: ["dialogShared"],
     data: () => ({
-        dialog3: false,
         valid: true,
         user: '',
         userRules: [
-        v => !!v || 'User is required',
+        v => !!v || 'Email is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
         ],
         password: '',
         passRules: [
@@ -46,8 +48,15 @@ export default {
         ]
     }),
     mounted() {
-        console.log(this.dial)
+
+},
+    methods: {
+        changeInitial(){
+            this.$emit("log", false);
+            this.$refs.form.reset()
+        }
     }
     
 }
 </script>
+
