@@ -14,7 +14,7 @@
         </v-toolbar-items>
       </v-toolbar>
       <router-view></router-view>
-      <!--<home></home>-->
+      <home></home>
     </v-flex>
   </v-layout>
 </template>
@@ -23,8 +23,9 @@
 import Home from './Home';
 import Login from "./Login";
 import Signin from "./Signin";
+
 export default {
-  name: "app",
+  name: "App",
   components: {
     Home,
     Login,

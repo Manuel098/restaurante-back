@@ -142,17 +142,17 @@
 </template>
 
 <script>
-//import CardIn from "./CardIndex";
+import CardIn from "./CardIndex";
 
 export default {
-  name: "home",
+  name: "Home",
 
   data: function() {
     return {};
   },
-  /*components: {
+  components: {
     CardIn
-  },*/
+  },
   mounted() {},
   methods: {}
 };
@@ -160,7 +160,7 @@ export default {
 
 <style>
 .back {
-  background: url("./public/img/back.jpeg");
+  background: url("C:/xampp/htdocs/restaurante-back/resources/js/components/public/img/back.jpeg");
   background-size: cover;
 }
 #inspire {
