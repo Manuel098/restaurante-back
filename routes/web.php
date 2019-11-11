@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
 
-Route::get('/dashboard', function () {
+/*Route::get('/', function () {
     return view('dashboard');
-});
+});*/
 
 // Auth::routes();
 
