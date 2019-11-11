@@ -18,4 +18,8 @@ class Categorias extends Model
     protected $fillable = [
         'nombre', 'URL'
     ];
+
+    public function infoPlatillo(){
+        return $this->hasMany('App\Platillos', 'categoria_id', 'id');
+    }
 }

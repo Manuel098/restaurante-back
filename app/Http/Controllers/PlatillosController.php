@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Platillos;
+use App\Categorias;
 
 class PlatillosController extends Controller
 {
@@ -16,7 +17,7 @@ class PlatillosController extends Controller
     public function index()
     {
         try{
-            $platillos = Platillos::all();
+            $platillos = Categorias::with('infoPlatillo')->select('id', 'nombre', 'URL')->get();
         } catch(QueryException $e) {
             return response( $e->getMessage(), 501);
         }

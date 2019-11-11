@@ -18,4 +18,8 @@ class Mesas extends Model
     protected $fillable = [
         'status', 'number'
     ];
+
+    public function platillos(){
+        return $this->hasMany('App\Platillo_Mesa','mesa_id', 'id');
+    }
 }

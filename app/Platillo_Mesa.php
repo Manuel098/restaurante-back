@@ -18,4 +18,8 @@ class Platillo_Mesa extends Model
     protected $fillable = [
         'platillo_id','mesa_id'
     ];
+
+    public function infoPlatillo(){
+        return $this->hasOne('App\Platillos', 'id', 'platillo_id');
+    }
 }

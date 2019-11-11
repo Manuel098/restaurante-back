@@ -16,6 +16,6 @@ class Platillos extends Model
     protected $table = "platillos";
     
     protected $fillable = [
-        'nombre','tipo', 'precio','URL'
+        'nombre','tipo', 'precio','URL', 'categoria_id'
     ];
 }
