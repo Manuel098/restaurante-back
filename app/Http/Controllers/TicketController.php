@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Ticket;
+use App\Meseros;
 
 class TicketController extends Controller
 {
@@ -13,7 +15,12 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            return Ticket::all();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response($Data, 201);
     }
 
     /**

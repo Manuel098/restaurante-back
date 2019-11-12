@@ -17,15 +17,39 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('/mesas', 'MesasController');
-Route::resource('/inventario', 'InventarioController');
-Route::resource('/meseros', 'MeserosController');
-Route::resource('/mesamesero', 'MesaMeseroController');
-Route::resource('/categorias', 'CategoriasController');
-Route::resource('/platillos', 'PlatillosController');
-Route::resource('/platillomesa', 'PlatilloMesaController');
-Route::resource('/proveedores', 'ProveedoresController');
-Route::resource('/producto', 'ProductoController');
-Route::resource('/entradaproducto', 'EntradaProductoController');
-Route::resource('/ticket', 'TicketController');
-Route::resource('/ganancias', 'GananciasController');
+Route::resource('/mesas', 'MesasController')->except([
+        'create','edit', 'create'
+    ]);
+Route::resource('/inventario', 'InventarioController')->except([
+        'create','edit', 'create'
+    ]);
+Route::resource('/meseros', 'MeserosController')->except([
+        'create','edit', 'create'
+    ]);
+Route::resource('/mesamesero', 'MesaMeseroController')->except([
+        'create','edit', 'create'
+    ]);
+Route::resource('/categorias', 'CategoriasController')->except([
+        'create','edit', 'create'
+    ]);
+Route::resource('/platillos', 'PlatillosController')->except([
+        'create','edit', 'create'
+    ]);
+Route::resource('/platillomesa', 'PlatilloMesaController')->except([
+        'create','edit', 'create'
+    ]);
+Route::resource('/proveedores', 'ProveedoresController')->except([
+        'create','edit', 'create'
+    ]);
+Route::resource('/producto', 'ProductoController')->except([
+        'create','edit', 'create'
+    ]);
+Route::resource('/entradaproducto', 'EntradaProductoController')->except([
+        'create','edit', 'create'
+    ]);
+Route::resource('/ticket', 'TicketController')->except([
+        'create','edit', 'create'
+    ]);
+Route::resource('/ganancias', 'GananciasController')->except([
+        'create','edit', 'create'
+    ]);

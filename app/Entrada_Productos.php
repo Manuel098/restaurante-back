@@ -18,4 +18,13 @@ class Entrada_Productos extends Model
     protected $fillable = [
         'producto_id','proveedor_id','cantidad', 'precio'
     ];
+    
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'created_at', 'deleted_at','updated_at'
+    ];
 }

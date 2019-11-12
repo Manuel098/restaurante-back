@@ -18,4 +18,8 @@ class Ticket extends Model
     protected $fillable = [
         'mesa_mesero_id','platillos_mesa','total'
     ];
+
+    public function mesaMeser(){
+        return $this->hasOne('App\Mesa_Meseros', 'id');
+    }
 }

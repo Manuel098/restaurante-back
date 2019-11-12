@@ -30,8 +30,8 @@ class MesasTest extends TestCase
             'number' => 'asd'
         ])->assertStatus(501);
         $this->put('/api/mesas/1', [
-            'status' => 'asd',
-            'number' => 'asd'
+            'status' => '0',
+            'number' => '123'
         ])->assertStatus(201);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Entrada_Productos as entProd;
 
 class EntradaProductoController extends Controller
 {
@@ -13,7 +14,12 @@ class EntradaProductoController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $entProd = entProd::all();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response($entProd, 201);
     }
 
     /**

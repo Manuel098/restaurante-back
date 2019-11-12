@@ -13,9 +13,9 @@
 
 Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('dashboard');
-});*/
+});
 
 // Auth::routes();
 
