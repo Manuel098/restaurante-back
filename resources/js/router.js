@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./components/Home.vue";
 import Menu from "./components/Menu.vue";
+import Inventario from "./views/Inventario.vue";
 
 
 Vue.use(Router);
@@ -16,6 +17,12 @@ export default new Router({
       component: Home
     },
     {
+      path:"/inventario",
+      name: "inventario",
+      component: Inventario
+
+    },
+    {
       path: "/about",
       name: "about",
       // route level code-splitting
@@ -28,6 +35,11 @@ export default new Router({
       path: "/menu",
       name: "menu",
       component: Menu
-    }
+    },
+    // {
+    //   path: "/inventario",
+    //   name: "inventario",
+    //   component: Inventario
+    // }
   ]
 });

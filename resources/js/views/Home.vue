@@ -12,10 +12,10 @@
               </div>
             </router-link>
             
-            <div>
-            <CardIn title="Generar cuenta" 
-            source="https://cdn.pixabay.com/photo/2016/07/15/21/07/credit-card-1520400_960_720.jpg"/>
-            </div>
+              <div>
+              <CardIn title="Generar cuenta" 
+              source="https://cdn.pixabay.com/photo/2016/07/15/21/07/credit-card-1520400_960_720.jpg"/>
+              </div>
             <div>
             <CardIn title="Asignar mesero" 
             source="https://cdn.pixabay.com/photo/2017/06/06/09/22/waitress-2376728_960_720.jpg"/>
@@ -24,10 +24,12 @@
             <CardIn title="Proveedores" 
             source="https://cdn.pixabay.com/photo/2017/05/23/22/36/vegetables-2338824_960_720.jpg"/>
             </div>
-            <div>
-            <CardIn title="Stock" 
-            source="https://cdn.pixabay.com/photo/2018/02/24/07/48/food-3177460_960_720.jpg"/>
-            </div>
+            <router-link to="/inventario" exact>
+              <div>
+              <CardIn title="Stock" 
+              source="https://cdn.pixabay.com/photo/2018/02/24/07/48/food-3177460_960_720.jpg"/>
+              </div>
+            </router-link>
             <div>
             <CardIn title="Efectivo total" 
             source="https://cdn.pixabay.com/photo/2014/10/23/10/10/dollar-499481_960_720.jpg"/>
