@@ -16,6 +16,6 @@ class Inventario extends Model
     protected $table = "inventario";
     
     protected $fillable = [
-        'nombre','cantidad','URL'
+        'nombre','cantidad'
     ];
 }

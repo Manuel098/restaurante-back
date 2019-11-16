@@ -32,11 +32,10 @@ class InventarioController extends Controller
     public function store(Request $request)
     {
         try {
-            if($request->URL==null||$request->nombre==null||$request->cantidad){
+            if($request->nombre==null||$request->cantidad==null){
                 return response('Need more data', 409);
             }
             $inventario = new Inventario;
-            $inventario->URL = $request->URL;
             $inventario->nombre = $request->nombre;
             $inventario->cantidad = $request->cantidad;
             $inventario->save();
@@ -73,9 +72,7 @@ class InventarioController extends Controller
     {
         try{
             $inventario = Inventario::findOrFail($id);
-            if($request->URL!=null){
-                $inventario->URL = $request->URL;
-            }if($request->nombre!=null){
+            if($request->nombre!=null){
                 $inventario->nombre = $request->nombre;
             }if($request->cantidad!=null){
                 $inventario->cantidad = $request->cantidad;

@@ -16,7 +16,6 @@ class InventarioTableSeeder extends Seeder
         $faker =Faker::create();
         for($i=1; $i<100;$i++){
             Inventario::create([
-                'URL' => $faker->text($maxNbChars = 10),
                 'nombre' => $faker->text($maxNbChars = 15),
                 'cantidad' => $faker->numberBetween($min = 1, $max = 99)
             ]);
