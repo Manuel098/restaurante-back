@@ -16,11 +16,11 @@ class ProveedoresController extends Controller
     public function index()
     {
         try{
-            $roles = Roles::all();
+            $proveedores = Proveedores::all();
         } catch(QueryException $e) {
             return response( $e->getMessage(), 501);
         }
-        return response($roles, 201);
+        return response($proveedores, 201);
     }
 
     /**

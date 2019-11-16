@@ -20,7 +20,7 @@ class InventarioController extends Controller
         } catch(QueryException $e) {
             return response( $e->getMessage(), 501);
         }
-        return response($inventario, 201);        
+        return response($inventario, 201);      
     }
 
     /**
