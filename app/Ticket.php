@@ -19,7 +19,11 @@ class Ticket extends Model
         'mesa_mesero_id','platillos_mesa','total'
     ];
 
-    public function mesaMeser(){
-        return $this->hasOne('App\Mesa_Meseros', 'id');
+    public function MesaMeser(){
+        return $this->hasOne('App\Mesa_Meseros', 'id', 'mesa_mesero_id')->select('id','mesa_id','mesero_id');
+    }
+
+    public function Platillo(){
+        return $this->hasOne('App\Platillo_Mesa', 'id', 'platillos_mesa');
     }
 }

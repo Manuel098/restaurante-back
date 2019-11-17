@@ -16,7 +16,10 @@ class TicketController extends Controller
     public function index()
     {
         try{
-            return Ticket::all();
+            return Ticket::with(
+                'MesaMeser.mesero','MesaMeser.mesas',
+                'Platillo.infoPlatillo','Platillo.infoMesa'
+            )->get();
         } catch(QueryException $e) {
             return response( $e->getMessage(), 501);
         }

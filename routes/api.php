@@ -44,9 +44,11 @@ Route::resource('/proveedores', 'ProveedoresController')->except([
 Route::resource('/producto', 'ProductoController')->except([
         'create','edit', 'create'
     ]);
-Route::resource('/entradaproducto', 'EntradaProductoController')->except([
-        'create','edit', 'create'
+Route::resource('/entprod', 'EntradaProductoController')->except([
+        'create','edit', 'create', 'show'
     ]);
+Route::GET('/entprod/prov/{id}','EntradaProductoController@showProv');
+Route::GET('/entprod/prod/{id}','EntradaProductoController@showProd');
 Route::resource('/ticket', 'TicketController')->except([
         'create','edit', 'create'
     ]);

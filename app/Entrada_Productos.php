@@ -27,4 +27,11 @@ class Entrada_Productos extends Model
     protected $hidden = [
         'created_at', 'deleted_at','updated_at'
     ];
+
+    public function proveedor(){
+        return $this->hasOne('App\Proveedores','id','proveedor_id')->select('id', 'nombre', 'descripcion', 'email', 'telefono');
+    }
+    public function producto(){
+        return $this->hasOne('App\Producto','id','producto_id')->select('id','nombre');
+    }
 }

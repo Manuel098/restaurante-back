@@ -20,6 +20,10 @@ class Platillo_Mesa extends Model
     ];
 
     public function infoPlatillo(){
-        return $this->hasOne('App\Platillos', 'id', 'platillo_id');
+        return $this->hasMany('App\Platillos', 'id', 'platillo_id');
+    }
+
+    public function infoMesa(){
+        return $this->hasMany('App\Mesas', 'id', 'mesa_id');
     }
 }

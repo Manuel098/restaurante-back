@@ -21,4 +21,8 @@ class Mesa_Meseros extends Model
     public function mesas(){
         return $this->hasOne('App\Mesas','id','mesa_id');
     }
+
+    public function mesero(){
+        return $this->hasOne('App\Meseros','id','mesero_id');
+    }
 }
