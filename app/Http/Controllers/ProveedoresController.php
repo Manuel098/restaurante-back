@@ -42,7 +42,6 @@ class ProveedoresController extends Controller
             $rol->email = $request->email;
             $rol->save();
         } catch(QueryException $e) {
-
             return ($e=="SQLSTATE[23000]")?response( 'Ingreso una dato ya existente', 409):response( $e->getMessage(), 501);
         }
         return response('Successful', 201);
@@ -87,7 +86,7 @@ class ProveedoresController extends Controller
             }
             $rol->save();
         } catch(QueryException $e) {
-            return ($e=="SQLSTATE[23000]")?response( 'El slug ya existe', 409):response( $e->getMessage(), 501);
+            return response( $e->getMessage(), 501);
         }
         return response('Successful', 201);
     }

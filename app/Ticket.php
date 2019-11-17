@@ -16,14 +16,10 @@ class Ticket extends Model
     protected $table = "tickets";
     
     protected $fillable = [
-        'mesa_mesero_id','platillos_mesa','total'
+        'mesa_mesero_id','total'
     ];
 
     public function MesaMeser(){
         return $this->hasOne('App\Mesa_Meseros', 'id', 'mesa_mesero_id')->select('id','mesa_id','mesero_id');
-    }
-
-    public function Platillo(){
-        return $this->hasOne('App\Platillo_Mesa', 'id', 'platillos_mesa');
     }
 }
