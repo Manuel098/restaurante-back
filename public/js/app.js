@@ -2776,8 +2776,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _agregar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./agregar */ "./resources/js/components/agregar.vue");
-//
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _agregar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./agregar */ "./resources/js/components/agregar.vue");
 //
 //
 //
@@ -2809,82 +2810,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "menu",
   data: function data() {
     return {
-      menu: [{
-        nombre: "Mexicana",
-        datos: [{
-          nombre: "Tacos",
-          precio: 50,
-          descripcion: "Tacos al pastor con piña",
-          imagen: "https://www.seriouseats.com/recipes/images/2013/04/20130427-tacos-al-pastor-new-01.jpg"
-        }, {
-          nombre: "Enchiladas",
-          precio: 70,
-          descripcion: "Tortillas de maiz rellenas de queso y bañadas en salsa dulce",
-          imagen: "https://www.simplyrecipes.com/wp-content/uploads/2006/04/red-chili-chicken-enchiladas-horiz-b-1700.jpg"
-        }]
-      }, {
-        nombre: "Comida chilanga",
-        datos: [{
-          nombre: "Quesadillas sin queso",
-          precio: 35,
-          descripcion: "Platillo tradicional chilango",
-          imagen: "https://www.carlosandcharlies.com/wp-content/uploads/2019/07/IMG_3301-1.jpg"
-        }, {
-          nombre: "Guajolota",
-          precio: 20,
-          descripcion: "Tamal dentro de un bolillo",
-          imagen: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Guajolota.jpg"
-        }, {
-          nombre: "Bolillo al cuadrado",
-          precio: 10,
-          descripcion: "Bolillo dentro de un bolillo",
-          imagen: "https://foodandtravel.mx/wp-content/uploads/2017/08/bolillobrotchen.jpg"
-        }]
-      }, {
-        nombre: "Postres",
-        datos: [{
-          nombre: "Flan",
-          precio: 50,
-          descripcion: "Flan de leche con caramelo",
-          imagen: "https://www.tasteofhome.com/wp-content/uploads/2017/10/Creamy-Caramel-Flan_exps2197_GPW2337930A12_09_2bC_RMS-1.jpg"
-        }]
-      }, {
-        nombre: "Bebidas",
-        datos: [{
-          nombre: "Cafe",
-          precio: 30,
-          descripcion: "Cafe tipo americano",
-          imagen: "https://www.elfinanciero.com.mx/uploads/2018/04/09/ce840aa9581523317353_standard_desktop_medium_retina.png"
-        }, {
-          nombre: "Long island",
-          precio: 50,
-          descripcion: "Mezcla de licores con sabor tropical",
-          imagen: "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/4/25/0/CCWM_Long-Island-Ice-Tea_s3x4.jpg.rend.hgtvcom.826.620.suffix/1384263309789.jpeg"
-        }, {
-          nombre: "Agua mineral",
-          precio: 50,
-          descripcion: "Agua mineralizada",
-          imagen: "https://cadenaser00.epimg.net/ser/imagenes/2015/11/30/sociedad/1448885562_761820_1448885853_noticia_normal.jpg"
-        }]
-      }],
+      menu: [],
       modal_agregar: false,
       nombre: "",
       precio: 0
     };
   },
   components: {
-    "c-agregar": _agregar__WEBPACK_IMPORTED_MODULE_0__["default"]
+    "c-agregar": _agregar__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
     agregar: function agregar(nombre, precio) {
       this.modal_agregar = true;
       this.nombre = nombre;
       this.precio = precio;
+    },
+    getPlatillos: function getPlatillos() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/platillos").then(function (response) {
+        _this.menu = response.data;
+      })["catch"](function (error) {
+        console.log("Error: " + error);
+      });
     }
+  },
+  created: function created() {
+    this.getPlatillos();
   }
 });
 
@@ -2903,6 +2860,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
 //
 //
 //
@@ -7765,7 +7725,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css?bdb9":
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css":
 /*!***********************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vuetify/dist/vuetify.min.css ***!
   \***********************************************************************************************************************************/
@@ -7816,7 +7776,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.stlName[data-v-7fa2c4ca] {\r\n  font-size: 28px;\r\n  text-shadow: 1px 1px 0px #000000;\n}\r\n", ""]);
+exports.push([module.i, "\n.stlName[data-v-7fa2c4ca] {\r\n font-size: 28px;\r\n text-shadow: 1px 1px 0px #000000;\n}\r\n", ""]);
 
 // exports
 
@@ -40666,7 +40626,7 @@ var render = function() {
         _vm._l(_vm.menu, function(tipos) {
           return _c(
             "div",
-            { key: tipos },
+            { key: tipos.id },
             [
               _c("p", { staticClass: "display-1" }, [
                 _vm._v(_vm._s(tipos.nombre))
@@ -40681,10 +40641,10 @@ var render = function() {
               _c(
                 "v-container",
                 { staticClass: "row" },
-                _vm._l(tipos.datos, function(comida) {
+                _vm._l(tipos.info_platillo, function(comida) {
                   return _c(
                     "div",
-                    { key: comida, staticClass: "pa-2" },
+                    { key: comida.id, staticClass: "pa-2" },
                     [
                       _c(
                         "v-card",
@@ -40703,7 +40663,7 @@ var render = function() {
                               staticClass: "white--text align-end",
                               attrs: {
                                 height: "200px",
-                                src: comida.imagen,
+                                src: comida.URL,
                                 alt: comida.alt
                               }
                             },
@@ -40719,9 +40679,7 @@ var render = function() {
                             _vm._v("$" + _vm._s(comida.precio))
                           ]),
                           _vm._v(" "),
-                          _c("v-card-text", [
-                            _vm._v(_vm._s(comida.descripcion))
-                          ])
+                          _c("v-card-text", [_vm._v(_vm._s(comida.tipo))])
                         ],
                         1
                       )
@@ -40783,6 +40741,12 @@ var render = function() {
       _c(
         "v-flex",
         [
+          _c("p", [_vm._v(_vm._s(_vm.selectedItem))]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(_vm.proveedores))]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(_vm.itemId))]),
+          _vm._v(" "),
           _c("v-container", { staticClass: "text-center display-1" }, [
             _vm._v("\n      Proveedores\n      "),
             _c("hr", {
@@ -94005,7 +93969,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vue__;
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css?bdb9");
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
