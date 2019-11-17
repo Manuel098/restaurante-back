@@ -16,8 +16,8 @@ class TicketTableSeeder extends Seeder
         $faker =Faker::create();
         for($i=1; $i<7;$i++){
             Ticket::create([
-                'mesa_mesero_id' => $faker->numberBetween($min = 1, $max = 99),
-                'platillos_mesa' => $faker->numberBetween($min = 1, $max = 99),
+                'mesa_mesero_id' => $faker->numberBetween($min = 1, $max = 6),
+                'platillos_mesa' => $faker->numberBetween($min = 1, $max = 6),
                 'total' => $faker->numberBetween($min = 1, $max = 99)
             ]);
         }

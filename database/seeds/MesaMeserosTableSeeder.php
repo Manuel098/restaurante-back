@@ -16,8 +16,8 @@ class MesaMeserosTableSeeder extends Seeder
         $faker =Faker::create();
         for($i=1; $i<7;$i++){
             Mesa_Meseros::create([
-                'mesero_id' => $faker->numberBetween($min = 1, $max = 99),
-                'mesa_id' => $faker->numberBetween($min = 1, $max = 99),
+                'mesero_id' => $faker->numberBetween($min = 1, $max = 6),
+                'mesa_id' => $faker->numberBetween($min = 1, $max = 6),
             ]);
         }
     }

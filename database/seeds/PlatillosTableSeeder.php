@@ -20,7 +20,7 @@ class PlatillosTableSeeder extends Seeder
                 'tipo' => $faker->text($maxNbChars = 10),
                 'precio' => $faker->numberBetween($min = 1, $max = 499),
                 'URL' => $faker->text($maxNbChars = 10),
-                'categoria_id' => $faker->numberBetween($min = 1, $max = 99)
+                'categoria_id' => $faker->numberBetween($min = 1, $max = 6)
             ]);
         }
     }
