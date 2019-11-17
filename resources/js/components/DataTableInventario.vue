@@ -1,22 +1,17 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="productos"
-    sort-by="calories"
-    class="elevation-1"
-  >
+  <v-data-table :headers="headers" :items="productos" sort-by="calories" class="elevation-1">
+    <template v-slot:item.cantidad="{item}">
+      <v-chip :color="getColor(item.cantidad)" dark>{{ item.cantidad }}</v-chip>
+    </template>
+
     <template v-slot:top>
       <v-toolbar flat color="white">
         <v-toolbar-title>Inventario</v-toolbar-title>
-        <v-divider
-          class="mx-4"
-          inset
-          vertical
-        ></v-divider>
+        <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark class="mb-2" v-on="on">Nuevo producto</v-btn>
+            <v-btn color="primary" rounded dark class="mb-2" v-on="on">Nuevo producto</v-btn>
           </template>
           <v-card>
             <v-card-title>
@@ -46,19 +41,8 @@
       </v-toolbar>
     </template>
     <template v-slot:item.action="{ item }">
-      <v-icon
-        small
-        class="mr-2"
-        @click="editItem(item)"
-      >
-        edit
-      </v-icon>
-      <v-icon
-        small
-        @click="deleteItem(item)"
-      >
-        delete
-      </v-icon>
+      <v-icon small class="mr-2" @click="editItem(item)">edit</v-icon>
+      <v-icon small @click="deleteItem(item)">delete</v-icon>
     </template>
     <template v-slot:no-data>
       <v-btn color="primary" @click="initialize">Reset</v-btn>
@@ -66,141 +50,157 @@
   </v-data-table>
 </template>
 <script>
-
 import axios from "axios";
-  export default {
-      name: "DataInventario",
-    data: () => ({
-    
-      productos: [],
-      dialog: false,
-      headers: [
-        {
-          text: 'Producto',
-          align: 'left',
-          sortable: true,
-          value: 'id',
-        },
-        { text: 'Nombre', value: 'nombre' },
-        { text: 'Cantidad', value: 'cantidad' },
-        { text: 'Actions', value: 'action', sortable: false },
-      ],
-      desserts: [],
-      editedIndex: -1,
-      editedItem: {
-        nombre: '',
-        cantidad: 0
+export default {
+  name: "DataInventario",
+  data: () => ({
+    productos: [],
+    dialog: false,
+    headers: [
+      {
+        text: "Producto",
+        align: "left",
+        sortable: true,
+        value: "id"
       },
-      defaultItem: {
-        nombre: '',
-        cantidad: 0
-      },
-    }),
-
-    computed: {
-      formTitle () {
-        return this.editedIndex === -1 ? 'Nuevo producto' : 'Editar'
-      },
+      { text: "Nombre", value: "nombre" },
+      { text: "Cantidad", value: "cantidad" },
+      { text: "Actions", value: "action", sortable: false }
+    ],
+    desserts: [],
+    editedIndex: -1,
+    editedItem: {
+      nombre: "",
+      cantidad: 0
     },
-
-    watch: {
-      dialog (val) {
-        val || this.close()
-      },
-    },
-    mounted: {
-        //getProducts();
-    },
-
-    created () {
-        this.getProducts();
-      this.initialize();
-    },
-
-    methods: {
-
+    defaultItem: {
+      nombre: "",
+      cantidad: 0
+    }
+  }),
+  computed: {
+    formTitle() {
+      return this.editedIndex === -1 ? "Nuevo producto" : "Editar";
+    }
+  },
+  watch: {
+    dialog(val) {
+      val || this.close();
+    }
+  },
+  created() {
+    this.getProducts();
+    this.initialize();
+  },
+  methods: {
     getProducts: function() {
-        axios
+      axios
         .get("/api/inventario")
         .then(response => {
-            this.productos=response.data;
+          this.productos = response.data;
         })
         .catch(function(error) {
-            console.log("Error: " + error);
+          console.log("Error: " + error);
         });
     },
     updateProducts() {
-        axios({
-            method: "put",
-            url:
-            ("/api/inventario/"+this.editedItem.id),
-            data: {
-                nombre: this.editedItem.nombre,
-                cantidad: this.editedItem.cantidad
-            }
-        })
-        .then(function(response){
-            console.log(response);
-        })
-        .catch(function(error) {
-            console.log("Error" + error);
-        })
-    },
-    createProducts(){
-        axios({
-            method: "post",
-            url:
-            ("/api/inventario"),
-            data: {
-                nombre: this.editedItem.nombre,
-                cantidad: this.editedItem.cantidad
-            }
-        })
-        .then(function(response){
-            console.log(response);
-        })
-        .catch(function(error) {
-            console.log("Error" + error);
-        })
-    },
-      initialize () {
-        this.desserts = [
-          
-        ]
-      },
-
-      editItem (item) {
-        this.editedIndex = this.productos.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        console.log(this.editedItem.id);
-        this.dialog = true
-      },
-
-      deleteItem (item) {
-        const index = this.desserts.indexOf(item)
-        confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
-      },
-
-      close () {
-        this.dialog = false
-        setTimeout(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
-        }, 300)
-      },
-
-      save () {
-        if (this.editedIndex == -1) {
-            console.log("Nuewo prod")
-            this.createProducts();
-
-        } else {
-          this.updateProducts();
-          console.log("actualizar")
-
+      axios({
+        method: "put",
+        url: "/api/inventario/" + this.editedItem.id,
+        data: {
+          nombre: this.editedItem.nombre,
+          cantidad: this.editedItem.cantidad
         }
-        this.close()
-      },
+      })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log("Error" + error);
+        });
+            axios
+        .get("/api/inventario")
+        .then(response => {
+          this.productos = response.data;
+        })
+        .catch(function(error) {
+          console.log("Error: " + error);
+        });
     },
+    deleteProduct(item) {
+      //confirm("¿Esta seguro de que desea borrar este campo?") &&
+      axios({
+        method: "delete",
+        url: "/api/inventario/" + this.editedItem.id
+      })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log("Error" + error);
+        });
+      axios
+        .get("/api/inventario")
+        .then(response => {
+          this.productos = response.data;
+        })
+        .catch(function(error) {
+          console.log("Error: " + error);
+        });
+    },
+    createProducts() {
+      axios({
+        method: "post",
+        url: "/api/inventario",
+        data: {
+          nombre: this.editedItem.nombre,
+          cantidad: this.editedItem.cantidad
+        }
+      })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log("Error" + error);
+        });
+    },
+    initialize() {
+      this.desserts = [];
+    },
+    editItem(item) {
+      this.editedIndex = this.productos.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      console.log(this.editedItem.id);
+      this.dialog = true;
+    },
+    deleteItem(item) {
+      this.editedIndex = this.productos.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      console.log(this.editedItem.id);
+      this.deleteProduct();
+    },
+    close() {
+      this.dialog = false;
+      setTimeout(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      }, 300);
+    },
+    save() {
+      if (this.editedIndex == -1) {
+        console.log("Nuewo prod");
+        this.createProducts();
+      } else {
+        this.updateProducts();
+        console.log("actualizar");
+      }
+      this.close();
+    },
+    getColor(cantidad) {
+      if (cantidad < 10) return "red";
+      else if (cantidad < 50) return "orange";
+      else return "green";
+    }
   }
+};
 </script>

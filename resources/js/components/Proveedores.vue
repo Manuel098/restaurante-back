@@ -1,8 +1,6 @@
 <template>
   <v-layout>
     <v-flex>
-      <p>{{ itemId }}</p>
-      <p>{{ proveedores }}</p>
       <v-container class="text-center display-1">
         Proveedores
         <hr style="border-color:orange; width:90px; margin-left:auto; margin-right:auto; border-bottom-width:3px;"/>
@@ -87,7 +85,7 @@
           <v-divider></v-divider>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="deleteDialog = false">Aceptar</v-btn>
+            <v-btn color="primary" text @click="deleteProv()">Aceptar</v-btn>
             <v-btn text @click="deleteDialog = false">Cancelar</v-btn>
           </v-card-actions>
         </v-card>
@@ -99,7 +97,6 @@
           <v-icon left>mdi-plus</v-icon>Agregar Provedor
         </v-btn>
       </v-container>
-
       <!-- Cards de proveedores -->
       <v-container>
         <v-row>
@@ -118,7 +115,7 @@
               <v-card-actions>
                 <v-btn color="primary" @click="dialogEdit(item);itemId=item.id" text>Editar</v-btn>
 
-                <v-btn color="error" @click="dialogDelete()" text>Eliminar</v-btn>
+                <v-btn color="error" @click="dialogDelete();itemId=item.id" text>Eliminar</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -197,13 +194,24 @@ export default {
         telefono: this.selectedItem.telefono,
         email: this.selectedItem.email
       });
+      axios.get("/api/proveedores").then(response => (this.proveedores = response["data"]));
       this.addEditDialog = false;
     },
     editProv() {
-
+      axios.put("/api/proveedores/"+ this.itemId, {
+        nombre: this.selectedItem.nombre,
+        descripcion: this.selectedItem.descripcion,
+        telefono: this.selectedItem.telefono,
+        email: this.selectedItem.email
+      });
+      axios.get("/api/proveedores").then(response => (this.proveedores = response["data"]));
       this.addEditDialog = false;
     },
-    deleteProv() {}
+    deleteProv() {
+      axios.delete("/api/proveedores/" + this.itemId);
+      axios.get("/api/proveedores").then(response => (this.proveedores = response["data"]));
+      this.deleteDialog = false;
+    }
   }
 };
 </script>
