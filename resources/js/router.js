@@ -3,7 +3,9 @@ import Router from "vue-router";
 import Home from "./components/Home.vue";
 import Menu from "./components/Menu.vue";
 import Inventario from "./views/Inventario.vue";
-
+import Proveedores from "./components/Proveedores.vue";
+import Cuenta from "./components/Cuenta.vue";
+import Efectivo from "./components/Efectivo.vue";
 
 Vue.use(Router);
 
@@ -21,6 +23,21 @@ export default new Router({
       name: "inventario",
       component: Inventario
 
+    },
+    {
+      path: "/efectivo",
+      name: "efectivo total",
+      component: Efectivo
+    },
+    {
+      path: "/cuenta",
+      name: "generar cuenta",
+      component: Cuenta
+    },
+    {
+      path: "/proveedores",
+      name: "proveedores",
+      component: Proveedores
     },
     {
       path: "/about",
