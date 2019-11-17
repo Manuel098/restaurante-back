@@ -39711,16 +39711,6 @@ var render = function() {
         "v-flex",
         { attrs: { xs12: "" } },
         [
-          _c("Login", {
-            attrs: { dialogShared: _vm.initialDialog },
-            on: { log: _vm.setInitial }
-          }),
-          _vm._v(" "),
-          _c("Signin", {
-            attrs: { signShared: _vm.initialSign },
-            on: { sign: _vm.setSign }
-          }),
-          _vm._v(" "),
           _c(
             "v-toolbar",
             { attrs: { dark: "", fixed: "" } },
@@ -39732,39 +39722,7 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "flex-grow-1" }),
-              _vm._v(" "),
-              _c(
-                "v-toolbar-items",
-                [
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { text: "" },
-                      on: {
-                        click: function($event) {
-                          return _vm.handleLogin()
-                        }
-                      }
-                    },
-                    [_vm._v("Log in")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { text: "" },
-                      on: {
-                        click: function($event) {
-                          return _vm.handleSignin()
-                        }
-                      }
-                    },
-                    [_vm._v("Sign in")]
-                  )
-                ],
-                1
-              )
+              _c("div", { staticClass: "flex-grow-1" })
             ],
             1
           ),
@@ -95392,8 +95350,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\restaurante-back\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\restaurante-back\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\David\Desktop\somebody\restaurante-back\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\David\Desktop\somebody\restaurante-back\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -1,17 +1,17 @@
 <template>
   <v-layout>
     <v-flex xs12>
-      <Login :dialogShared="initialDialog" @log="setInitial" />
-      <Signin :signShared="initialSign" @sign="setSign" />
+      <!-- <Login :dialogShared="initialDialog" @log="setInitial" />
+      <Signin :signShared="initialSign" @sign="setSign" /> -->
       <v-toolbar dark fixed>
         <router-link to="/" exact tag="h1">
           <v-toolbar-title>FOOD FOLKS</v-toolbar-title>
         </router-link>
         <div class="flex-grow-1"></div>
-        <v-toolbar-items>
+        <!-- <v-toolbar-items>
           <v-btn text @click="handleLogin()">Log in</v-btn>
           <v-btn text @click="handleSignin()">Sign in</v-btn>
-        </v-toolbar-items>
+        </v-toolbar-items> -->
       </v-toolbar>
       <router-view></router-view>
       <!--<home></home>-->
