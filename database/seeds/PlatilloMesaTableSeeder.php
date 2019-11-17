@@ -14,7 +14,7 @@ class PlatilloMesaTableSeeder extends Seeder
     public function run()
     {
         $faker =Faker::create();
-        for($i=1; $i<100;$i++){
+        for($i=1; $i<7;$i++){
             Platillo_Mesa::create([
                 'platillo_id' => $faker->numberBetween($min = 1, $max = 99),
                 'mesa_id' => $faker->numberBetween($min = 1, $max = 99)

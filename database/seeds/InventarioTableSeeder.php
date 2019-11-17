@@ -14,7 +14,7 @@ class InventarioTableSeeder extends Seeder
     public function run()
     {
         $faker =Faker::create();
-        for($i=1; $i<100;$i++){
+        for($i=1; $i<7;$i++){
             Inventario::create([
                 'nombre' => $faker->text($maxNbChars = 15),
                 'cantidad' => $faker->numberBetween($min = 1, $max = 99)

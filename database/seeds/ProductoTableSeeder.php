@@ -14,7 +14,7 @@ class ProductoTableSeeder extends Seeder
     public function run()
     {
         $faker =Faker::create();
-        for($i=1; $i<100;$i++){
+        for($i=1; $i<7;$i++){
             Producto::create([
                 'nombre' => $faker->text($maxNbChars = 15)
             ]);

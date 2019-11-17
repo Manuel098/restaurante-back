@@ -14,7 +14,7 @@ class CategoriasTableSeeder extends Seeder
     public function run()
     {
         $faker =Faker::create();
-        for($i=1; $i<100;$i++){
+        for($i=1; $i<7;$i++){
             Categorias::create([
                 'nombre' => $faker->text($maxNbChars = 15),
                 'URL' => $faker->text($maxNbChars = 15)

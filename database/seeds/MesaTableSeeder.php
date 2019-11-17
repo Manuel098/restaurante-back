@@ -12,7 +12,7 @@ class MesaTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i=1; $i<100;$i++){
+        for($i=1; $i<7;$i++){
             Mesas::create([
                 'status' => 0,
                 'number' => $i,
