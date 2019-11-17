@@ -25,4 +25,8 @@ class Mesa_Meseros extends Model
     public function mesero(){
         return $this->hasOne('App\Meseros','id','mesero_id');
     }
+
+    public function Platillos(){
+        return $this->hasMany('App\Platillo_Mesa', 'id', 'mesero_id');
+    }
 }

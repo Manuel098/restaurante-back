@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Meseros;
+use App\Mesa_Meseros;
 
 class MesaMeseroController extends Controller
 {
@@ -40,7 +41,18 @@ class MesaMeseroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            if($request->mesero_id==null||$request->mesa_id==null){
+                return response('Need more data', 409);
+            }
+            $mesMeseros = new Mesa_Meseros;
+            $mesMeseros->mesero_id = $request->mesero_id;
+            $mesMeseros->mesa_id = $request->mesa_id;
+            $mesMeseros->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -51,7 +63,12 @@ class MesaMeseroController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $mesMeseros = Mesa_Meseros::findOrFail($id);
+            return response($mesMeseros, 201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 
     /**
@@ -63,7 +80,18 @@ class MesaMeseroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $mesMeseros = Mesa_Meseros::findOrFail($id);
+            if($request->mesero_id!=null){
+                $mesMeseros->mesero_id = $request->mesero_id;
+            }if($request->mesa_id!=null){
+                $mesMeseros->mesa_id = $request->mesa_id;
+            }
+            $mesMeseros->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -74,6 +102,13 @@ class MesaMeseroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $mesMeseros = Mesa_Meseros::findOrFail($id);
+            $mesMeseros->delete();
+    
+            return response("El recurso ha sido borrado",201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 }

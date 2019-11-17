@@ -1,9 +1,6 @@
 <template>
   <v-layout>
     <v-flex>
-      <p>{{ selectedItem }}</p>
-      <p>{{ proveedores }}</p>
-      <p>{{itemId}}</p>
       <v-container class="text-center display-1">
         Proveedores
         <hr style="border-color:orange; width:90px; margin-left:auto; margin-right:auto; border-bottom-width:3px;"/>

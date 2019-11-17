@@ -18,7 +18,7 @@ class TicketController extends Controller
         try{
             return Ticket::with(
                 'MesaMeser.mesero','MesaMeser.mesas',
-                'Platillo.infoPlatillo','Platillo.infoMesa'
+                'Platillos'
             )->get();
         } catch(QueryException $e) {
             return response( $e->getMessage(), 501);
@@ -34,7 +34,19 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            if($request->mesa_mesero_id==null||$request->mesa==null||$request->total==null){
+                return response('Need more data', 409);
+            }
+            $ticket = new Ticket;
+            $ticket->mesa_mesero_id = $request->mesa_mesero_id;
+            $ticket->mesa = $request->mesa;
+            $ticket->total = $request->total;
+            $ticket->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -57,7 +69,20 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $ticket = Ticket::findOrFail($id);
+            if($request->mesa_mesero_id!=null){
+                $ticket->mesa_mesero_id = $request->mesa_mesero_id;
+            }if($request->mesa!=null){
+                $ticket->mesa = $request->mesa;
+            }if($request->total!=null){
+                $ticket->total = $request->total;
+            }
+            $ticket->save();
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
+        return response('Successful', 201);
     }
 
     /**
@@ -68,6 +93,13 @@ class TicketController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $rol = Proveedores::findOrFail($id);
+            $rol->delete();
+    
+            return response("El recurso ha sido borrado",201);
+        } catch(QueryException $e) {
+            return response( $e->getMessage(), 501);
+        }
     }
 }

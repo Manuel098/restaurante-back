@@ -2076,6 +2076,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "generar cuenta",
@@ -2159,7 +2203,7 @@ __webpack_require__.r(__webpack_exports__);
       doc.text(120, orden, fecha);
       orden = orden + 10;
       doc.text(33, orden, "Calle Falsa #123 Col. Groove Street 34000");
-      doc.setLineWidth(.5);
+      doc.setLineWidth(0.5);
       var subtotal = 0;
       orden = orden + 3;
       doc.line(20, orden, 150, orden);
@@ -2179,12 +2223,12 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       orden = orden + 40;
-      var sub = String(subtotal * .84);
+      var sub = String(subtotal * 0.84);
       doc.text(20, orden, "Subtotal");
       doc.text(130, orden, sub);
       orden = orden + 8;
       doc.text(20, orden, "IVA");
-      var iva = String(subtotal * .16);
+      var iva = String(subtotal * 0.16);
       doc.text(130, orden, iva);
       orden = orden + 8;
       doc.text(20, orden, "Propina");
@@ -2809,6 +2853,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2860,9 +2950,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_1__);
-//
-//
-//
 //
 //
 //
@@ -7776,7 +7863,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.stlName[data-v-7fa2c4ca] {\r\n font-size: 28px;\r\n text-shadow: 1px 1px 0px #000000;\n}\r\n", ""]);
+exports.push([module.i, "\n.stlName[data-v-7fa2c4ca] {\r\n  font-size: 28px;\r\n  text-shadow: 1px 1px 0px #000000;\n}\r\n", ""]);
 
 // exports
 
@@ -39674,7 +39761,7 @@ var render = function() {
     "v-container",
     [
       _c("v-flex", { staticClass: "text-center display-1" }, [
-        _vm._v("\n        Cuenta\n    ")
+        _vm._v("Cuenta")
       ]),
       _vm._v(" "),
       _c("hr", {
@@ -39688,6 +39775,138 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("br"),
+      _vm._v(" "),
+      _c(
+        "v-container",
+        [
+          _c(
+            "v-row",
+            [
+              _c(
+                "v-col",
+                {
+                  staticClass: "text-center",
+                  attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
+                },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c("v-card-text", [
+                        _c("span", { staticClass: "title" }, [_vm._v("Mesa 1")])
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                {
+                  staticClass: "text-center",
+                  attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
+                },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c("v-card-text", [
+                        _c("span", { staticClass: "title" }, [_vm._v("Mesa 2")])
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                {
+                  staticClass: "text-center",
+                  attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
+                },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c("v-card-text", [
+                        _c("span", { staticClass: "title" }, [_vm._v("Mesa 3")])
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                {
+                  staticClass: "text-center",
+                  attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
+                },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c("v-card-text", [
+                        _c("span", { staticClass: "title" }, [_vm._v("Mesa 4")])
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                {
+                  staticClass: "text-center",
+                  attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
+                },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c("v-card-text", [
+                        _c("span", { staticClass: "title" }, [_vm._v("Mesa 5")])
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                {
+                  staticClass: "text-center",
+                  attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
+                },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c("v-card-text", [
+                        _c("span", { staticClass: "title" }, [_vm._v("Mesa 6")])
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "v-flex",
@@ -40581,77 +40800,223 @@ var render = function() {
     [
       _c(
         "v-flex",
-        _vm._l(_vm.menu, function(tipos) {
-          return _c(
-            "div",
-            { key: tipos.id },
+        [
+          _c(
+            "v-container",
             [
-              _c("p", { staticClass: "display-1" }, [
-                _vm._v(_vm._s(tipos.nombre))
-              ]),
-              _vm._v(" "),
-              _c("hr", {
-                staticStyle: { "margin-left": "1%", "margin-right": "1%" }
-              }),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
               _c(
-                "v-container",
-                { staticClass: "row" },
-                _vm._l(tipos.info_platillo, function(comida) {
-                  return _c(
-                    "div",
-                    { key: comida.id, staticClass: "pa-2" },
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    {
+                      staticClass: "text-center",
+                      attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
+                    },
                     [
                       _c(
                         "v-card",
-                        {
-                          attrs: { "max-width": "350px", height: "300px" },
-                          on: {
-                            click: function($event) {
-                              return _vm.agregar(comida.nombre, comida.precio)
-                            }
-                          }
-                        },
                         [
-                          _c(
-                            "v-img",
-                            {
-                              staticClass: "white--text align-end",
-                              attrs: {
-                                height: "200px",
-                                src: comida.URL,
-                                alt: comida.alt
-                              }
-                            },
-                            [
-                              _c("v-card-title", { staticClass: "stlName" }, [
-                                _vm._v(_vm._s(comida.nombre))
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-card-subtitle", { staticClass: "headline" }, [
-                            _vm._v("$" + _vm._s(comida.precio))
-                          ]),
-                          _vm._v(" "),
-                          _c("v-card-text", [_vm._v(_vm._s(comida.tipo))])
+                          _c("v-card-text", [
+                            _c("span", { staticClass: "title" }, [
+                              _vm._v("Mesa 1")
+                            ])
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    {
+                      staticClass: "text-center",
+                      attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        [
+                          _c("v-card-text", [
+                            _c("span", { staticClass: "title" }, [
+                              _vm._v("Mesa 2")
+                            ])
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    {
+                      staticClass: "text-center",
+                      attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        [
+                          _c("v-card-text", [
+                            _c("span", { staticClass: "title" }, [
+                              _vm._v("Mesa 3")
+                            ])
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    {
+                      staticClass: "text-center",
+                      attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        [
+                          _c("v-card-text", [
+                            _c("span", { staticClass: "title" }, [
+                              _vm._v("Mesa 4")
+                            ])
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    {
+                      staticClass: "text-center",
+                      attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        [
+                          _c("v-card-text", [
+                            _c("span", { staticClass: "title" }, [
+                              _vm._v("Mesa 5")
+                            ])
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    {
+                      staticClass: "text-center",
+                      attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        [
+                          _c("v-card-text", [
+                            _c("span", { staticClass: "title" }, [
+                              _vm._v("Mesa 6")
+                            ])
+                          ])
                         ],
                         1
                       )
                     ],
                     1
                   )
-                }),
-                0
+                ],
+                1
               )
             ],
             1
-          )
-        }),
-        0
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.menu, function(tipos) {
+            return _c(
+              "div",
+              { key: tipos.id },
+              [
+                _c("p", { staticClass: "display-1" }, [
+                  _vm._v(_vm._s(tipos.nombre))
+                ]),
+                _vm._v(" "),
+                _c("hr", {
+                  staticStyle: { "margin-left": "1%", "margin-right": "1%" }
+                }),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c(
+                  "v-container",
+                  { staticClass: "row" },
+                  _vm._l(tipos.info_platillo, function(comida) {
+                    return _c(
+                      "div",
+                      { key: comida.id, staticClass: "pa-2" },
+                      [
+                        _c(
+                          "v-card",
+                          {
+                            attrs: { "max-width": "350px", height: "300px" },
+                            on: {
+                              click: function($event) {
+                                return _vm.agregar(comida.nombre, comida.precio)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "v-img",
+                              {
+                                staticClass: "white--text align-end",
+                                attrs: {
+                                  height: "200px",
+                                  src: comida.URL,
+                                  alt: comida.alt
+                                }
+                              },
+                              [
+                                _c("v-card-title", { staticClass: "stlName" }, [
+                                  _vm._v(_vm._s(comida.nombre))
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("v-card-subtitle", { staticClass: "headline" }, [
+                              _vm._v("$" + _vm._s(comida.precio))
+                            ]),
+                            _vm._v(" "),
+                            _c("v-card-text", [_vm._v(_vm._s(comida.tipo))])
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ],
+              1
+            )
+          })
+        ],
+        2
       ),
       _vm._v(" "),
       _c(
@@ -40699,12 +41064,6 @@ var render = function() {
       _c(
         "v-flex",
         [
-          _c("p", [_vm._v(_vm._s(_vm.selectedItem))]),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(_vm.proveedores))]),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(_vm.itemId))]),
-          _vm._v(" "),
           _c("v-container", { staticClass: "text-center display-1" }, [
             _vm._v("\n      Proveedores\n      "),
             _c("hr", {

@@ -22,21 +22,21 @@
             </v-col>
 
             <!-- Generar cuenta -->
-            <v-col cols="12" sm="6" md="6" lg="4">
-              <router-link to="/cuenta" exact>
-                <v-card>
-                  <v-img
-                    class="white--text"
-                    height="180px"
-                    src="https://cdn.pixabay.com/photo/2016/07/15/21/07/credit-card-1520400_960_720.jpg"
-                  />
-                  <v-card-text>
-                    <span class="title">Generar cuenta</span>
-                    <br />
-                  </v-card-text>
-                </v-card>
-              </router-link>
-            </v-col>
+          <v-col cols="12" sm="6" md="6" lg="4">
+            <router-link to="/cuenta" exact>
+              <v-card>
+                <v-img
+                  class="white--text"
+                  height="180px"
+                  src="https://cdn.pixabay.com/photo/2016/07/15/21/07/credit-card-1520400_960_720.jpg"
+                />
+                <v-card-text>
+                  <span class="title">Generar cuenta</span>
+                  <br />
+                </v-card-text>
+              </v-card>
+            </router-link>
+          </v-col>
 
             <!-- Asignar mesero -->
             <v-col cols="12" sm="6" md="6" lg="4">

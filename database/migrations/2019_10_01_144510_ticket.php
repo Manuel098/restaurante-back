@@ -16,10 +16,8 @@ class Ticket extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('mesa_mesero_id');
-            $table->unsignedBigInteger('platillos_mesa');
             $table->float('total');
             
-            $table->foreign('platillos_mesa')->references('id')->on('platillos_mesa')->onDelete('cascade');
             $table->foreign('mesa_mesero_id')->references('id')->on('mesa_mesero')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
