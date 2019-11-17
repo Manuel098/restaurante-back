@@ -2021,8 +2021,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.min.js");
-/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jspdf__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.min.js");
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jspdf__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2190,7 +2190,7 @@ __webpack_require__.r(__webpack_exports__);
       return total;
     },
     terminar: function terminar() {
-      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1___default.a(); //var img = new Image();
+      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_0___default.a(); //var img = new Image();
       //img.src = 'logo.jpeg';
       //doc.addImage(img, 'jpeg', 20, 20,185,120);
 
