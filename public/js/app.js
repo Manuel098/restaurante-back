@@ -2386,6 +2386,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //import CardIn from "./CardIndex";
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "home",
@@ -39312,24 +39314,31 @@ var render = function() {
                       { attrs: { cols: "12", sm: "6", md: "6", lg: "4" } },
                       [
                         _c(
-                          "v-card",
+                          "router-link",
+                          { attrs: { to: "/inventario", exact: "" } },
                           [
-                            _c("v-img", {
-                              staticClass: "white--text",
-                              attrs: {
-                                height: "180px",
-                                src:
-                                  "https://cdn.pixabay.com/photo/2018/02/24/07/48/food-3177460_960_720.jpg"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("v-card-text", [
-                              _c("span", { staticClass: "title" }, [
-                                _vm._v("Stock")
-                              ]),
-                              _vm._v(" "),
-                              _c("br")
-                            ])
+                            _c(
+                              "v-card",
+                              [
+                                _c("v-img", {
+                                  staticClass: "white--text",
+                                  attrs: {
+                                    height: "180px",
+                                    src:
+                                      "https://cdn.pixabay.com/photo/2018/02/24/07/48/food-3177460_960_720.jpg"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("v-card-text", [
+                                  _c("span", { staticClass: "title" }, [
+                                    _vm._v("Stock")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("br")
+                                ])
+                              ],
+                              1
+                            )
                           ],
                           1
                         )

@@ -68,6 +68,7 @@
 
             <!-- Stock -->
             <v-col cols="12" sm="6" md="6" lg="4">
+              <router-link to="/inventario" exact>
               <v-card>
                 <v-img
                   class="white--text"
@@ -79,6 +80,7 @@
                   <br />
                 </v-card-text>
               </v-card>
+              </router-link>
             </v-col>
 
             <!-- Efectivo total -->
