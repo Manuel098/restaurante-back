@@ -2090,6 +2090,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DataInventario",
@@ -2135,8 +2139,6 @@ __webpack_require__.r(__webpack_exports__);
       val || this.close();
     }
   },
-  mounted: {//getProducts();
-  },
   created: function created() {
     this.getProducts();
     this.initialize();
@@ -2159,6 +2161,16 @@ __webpack_require__.r(__webpack_exports__);
           nombre: this.editedItem.nombre,
           cantidad: this.editedItem.cantidad
         }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log("Error" + error);
+      });
+    },
+    deleteProduct: function deleteProduct() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: "delete",
+        url: "/api/inventario/" + this.editedItem.id
       }).then(function (response) {
         console.log(response);
       })["catch"](function (error) {
@@ -2189,8 +2201,10 @@ __webpack_require__.r(__webpack_exports__);
       this.dialog = true;
     },
     deleteItem: function deleteItem(item) {
-      var index = this.desserts.indexOf(item);
-      confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1);
+      this.editedIndex = this.productos.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      console.log(this.editedItem.id);
+      this.deleteProduct();
     },
     close: function close() {
       var _this2 = this;
@@ -2211,6 +2225,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.close();
+    },
+    getColor: function getColor(cantidad) {
+      if (cantidad < 10) return 'red';else if (cantidad < 50) return 'orange';else return 'green';
     }
   }
 });
@@ -38894,6 +38911,19 @@ var render = function() {
     },
     scopedSlots: _vm._u([
       {
+        key: "item.cantidad",
+        fn: function(ref) {
+          var item = ref.item
+          return [
+            _c(
+              "v-chip",
+              { attrs: { color: _vm.getColor(item.cantidad), dark: "" } },
+              [_vm._v(_vm._s(item.cantidad))]
+            )
+          ]
+        }
+      },
+      {
         key: "top",
         fn: function() {
           return [
@@ -38925,7 +38955,11 @@ var render = function() {
                               _vm._g(
                                 {
                                   staticClass: "mb-2",
-                                  attrs: { color: "primary", dark: "" }
+                                  attrs: {
+                                    color: "primary",
+                                    rounded: "",
+                                    dark: ""
+                                  }
                                 },
                                 on
                               ),
@@ -93149,8 +93183,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Usuario\Documents\7o Cuatri\Pruebas SW\Restaurante\restaurante-back\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Usuario\Documents\7o Cuatri\Pruebas SW\Restaurante\restaurante-back\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\David\Desktop\somebody\restaurante-back\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\David\Desktop\somebody\restaurante-back\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
