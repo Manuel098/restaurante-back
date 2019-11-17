@@ -15,9 +15,8 @@ class Inventario extends Migration
     {
         Schema::create('inventario', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('URL');
             $table->string('nombre');
-            $table->integer('cantidad');
+            $table->string('cantidad');
             
             $table->timestamps();
             $table->softDeletes();

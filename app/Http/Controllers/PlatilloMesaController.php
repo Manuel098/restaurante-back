@@ -16,27 +16,6 @@ class PlatilloMesaController extends Controller
      */
     public function index()
     {
-        /*try{
-            $Data= array();
-            $mesas = Mesas::with('pivot.platillos')->select('id', 'status', 'number')->get();
-            foreach($mesas as $mesa){
-                $platillos = array();
-                foreach($mesa->pivot as $mesData){
-                    array_push($platillos, $mesData->platillos);
-                }
-                $newData = array(
-                    'id' =>  $mesa->id,   
-                    'status'=> $mesa->status,
-                    'number' => $mesa->number,
-                    'platillos' => $platillos
-                );
-                array_push($Data, $newData);
-            }
-        } catch(QueryException $e) {
-            return response( $e->getMessage(), 501);
-        }
-        return response($Data, 201);*/
-
         try{
             $platillo_mesa = Mesas::with('platillos.infoPlatillo')->select('id', 'status', 'number')->get();
         } catch(QueryException $e) {
