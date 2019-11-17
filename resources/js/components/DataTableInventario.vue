@@ -193,7 +193,6 @@ import axios from "axios";
         if (this.editedIndex == -1) {
             console.log("Nuewo prod")
             this.createProducts();
-          Object.assign(this.desserts[this.editedIndex], this.editedItem)
 
         } else {
           this.updateProducts();

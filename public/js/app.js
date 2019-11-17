@@ -2205,7 +2205,6 @@ __webpack_require__.r(__webpack_exports__);
       if (this.editedIndex == -1) {
         console.log("Nuewo prod");
         this.createProducts();
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
       } else {
         this.updateProducts();
         console.log("actualizar");
@@ -7201,7 +7200,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css?bdb9":
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css":
 /*!***********************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vuetify/dist/vuetify.min.css ***!
   \***********************************************************************************************************************************/
@@ -92311,7 +92310,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vue__;
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css?bdb9");
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -93150,13 +93149,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! C:\Users\David\Desktop\restaurante-back\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\David\Desktop\restaurante-back\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
 __webpack_require__(/*! C:\Users\Usuario\Documents\7o Cuatri\Pruebas SW\Restaurante\restaurante-back\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\Usuario\Documents\7o Cuatri\Pruebas SW\Restaurante\restaurante-back\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> 61efe42af49e2459063bb237a7510c619062c9d1
 
 
 /***/ })
