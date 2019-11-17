@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use EfecTotal;
+use App\EfecTotal;
 
 class FTotalController extends Controller
 {
