@@ -13,7 +13,14 @@ class EfectivoTotal extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('FTotal', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('descripcion');
+            $table->string('cantidad');
+
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -23,13 +30,6 @@ class EfectivoTotal extends Migration
      */
     public function down()
     {
-        Schema::create('FTotal', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('descripcion');
-            $table->string('cantidad');
-
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        Schema::dropIfExists('FTotal');
     }
 }
