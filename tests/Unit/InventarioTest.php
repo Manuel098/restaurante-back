@@ -15,7 +15,7 @@ class InventarioTest extends TestCase
      */
     public function testExample()
     {
-        $this->post('/api/platillos', [
+        $this->post('/api/inventario', [
             'nombre' => 'dfg'
         ])->assertStatus(409)->assertSee('Need more data');
         $this->post('/api/inventario', [
