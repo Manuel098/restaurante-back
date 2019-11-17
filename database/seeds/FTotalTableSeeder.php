@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use App\FTotal;
+use App\EfecTotal;
 
 class FTotalTableSeeder extends Seeder
 {
@@ -15,7 +15,7 @@ class FTotalTableSeeder extends Seeder
     {
         $faker =Faker::create();
         for($i=1; $i<7;$i++){
-            Entrada_Productos::create([
+            EfecTotal::create([
                 'descripcion' => $faker->text($maxNbChars = 15),
                 'cantidad' => $faker->text($maxNbChars = 15)
             ]);

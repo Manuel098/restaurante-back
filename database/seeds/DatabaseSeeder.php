@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             MeserosTableSeeder::class,
             MesaMeserosTableSeeder::class,
             CategoriasTableSeeder::class,
+            FTotalTableSeeder::class,
             PlatillosTableSeeder::class,
             PlatilloMesaTableSeeder::class,
             InventarioTableSeeder::class,
