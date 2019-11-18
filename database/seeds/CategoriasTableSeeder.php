@@ -17,7 +17,7 @@ class CategoriasTableSeeder extends Seeder
         for($i=1; $i<7;$i++){
             Categorias::create([
                 'nombre' => $faker->text($maxNbChars = 15),
-                'URL' => $faker->text($maxNbChars = 15)
+                'URL' => "https://ichef.bbci.co.uk/news/660/cpsprodpb/134E3/production/_105057097_a226d870-cc5f-4043-9f4b-d452b75cc280.jpg"
             ]);
         }
     }

@@ -18,7 +18,7 @@ class TicketController extends Controller
         try{
             return Ticket::with(
                 'MesaMeser.mesero','MesaMeser.mesas',
-                'Platillos'
+                'MesaMeser.mesas.Platillos'
             )->get();
         } catch(QueryException $e) {
             return response( $e->getMessage(), 501);
