@@ -17,7 +17,7 @@ class FTotalTableSeeder extends Seeder
         for($i=1; $i<7;$i++){
             EfecTotal::create([
                 'descripcion' => $faker->text($maxNbChars = 15),
-                'cantidad' => $faker->text($maxNbChars = 15)
+                'cantidad' => $faker->numberBetween($min = 1, $max = 200)
             ]);
         }
     }

@@ -16,7 +16,7 @@ class EfectivoTotal extends Migration
         Schema::create('FTotal', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('descripcion');
-            $table->string('cantidad');
+            $table->float('cantidad');
 
             $table->timestamps();
             $table->softDeletes();
