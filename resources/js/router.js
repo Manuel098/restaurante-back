@@ -6,6 +6,7 @@ import Inventario from "./views/Inventario.vue";
 import Proveedores from "./components/Proveedores.vue";
 import Cuenta from "./components/Cuenta.vue";
 import Efectivo from "./components/Efectivo.vue";
+import Asignar from "./components/Asignar.vue";
 
 Vue.use(Router);
 
@@ -53,10 +54,10 @@ export default new Router({
       name: "menu",
       component: Menu
     },
-    // {
-    //   path: "/inventario",
-    //   name: "inventario",
-    //   component: Inventario
-    // }
+    {
+      path: "/asignar",
+      name: "asignar",
+      component: Asignar
+    }
   ]
 });

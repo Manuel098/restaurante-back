@@ -40,17 +40,19 @@
 
             <!-- Asignar mesero -->
             <v-col cols="12" sm="6" md="6" lg="4">
-              <v-card>
-                <v-img
-                  class="white--text"
-                  height="180px"
-                  src="https://cdn.pixabay.com/photo/2017/06/06/09/22/waitress-2376728_960_720.jpg"
-                />
-                <v-card-text>
-                  <span class="title">Asignar mesero</span>
-                  <br />
-                </v-card-text>
-              </v-card>
+              <router-link to="/asignar" exact>
+                <v-card>
+                  <v-img
+                    class="white--text"
+                    height="180px"
+                    src="https://cdn.pixabay.com/photo/2017/06/06/09/22/waitress-2376728_960_720.jpg"
+                  />
+                  <v-card-text>
+                    <span class="title">Asignar mesero</span>
+                    <br />
+                  </v-card-text>
+                </v-card>
+              </router-link>
             </v-col>
 
             <!-- Proveedores -->
