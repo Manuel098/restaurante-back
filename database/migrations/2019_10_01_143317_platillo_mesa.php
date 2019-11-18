@@ -15,6 +15,9 @@ class PlatilloMesa extends Migration
     {
         Schema::create('platillos_mesa', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('tipo');
+            $table->string('nombre');
+            $table->string('precio');
             $table->unsignedBigInteger('platillo_id');
             $table->unsignedBigInteger('mesa_id');
 

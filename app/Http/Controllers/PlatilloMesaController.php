@@ -33,12 +33,16 @@ class PlatilloMesaController extends Controller
     public function store(Request $request)
     {
         try {
-            if($request->platillo_id==null||$request->mesa_id==null){
+            if($request->platillo_id==null||$request->nombre==null||
+            $request->tipo==null||$request->precio==null|| $request->mesa_id==null){
                 return response('Need more data', 409);
             }
             $platillo_mesa = new Platillo_Mesa;
             $platillo_mesa->platillo_id = $request->platillo_id;
             $platillo_mesa->mesa_id = $request->mesa_id;
+            $platillo_mesa->nombre = $request->nombre;
+            $platillo_mesa->tipo = $request->tipo;
+            $platillo_mesa->precio = $request->precio;
             $platillo_mesa->save();
         } catch(QueryException $e) {
             return response( $e->getMessage(), 501);
@@ -77,6 +81,12 @@ class PlatilloMesaController extends Controller
                 $platillo_mesa->platillo_id = $request->platillo_id;
             }if($request->mesa_id!=null){
                 $platillo_mesa->mesa_id = $request->mesa_id;
+            }if($request->nombre!=null){
+                $platillo_mesa->nombre = $request->nombre;
+            }if($request->tipo!=null){
+                $platillo_mesa->tipo = $request->tipo;
+            }if($request->precio!=null){
+                $platillo_mesa->precio = $request->precio;
             }
             $platillo_mesa->save();
         } catch(QueryException $e) {

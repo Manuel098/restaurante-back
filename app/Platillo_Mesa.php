@@ -16,7 +16,7 @@ class Platillo_Mesa extends Model
     protected $table = "platillos_mesa";
     
     protected $fillable = [
-        'platillo_id','mesa_id'
+        'platillo_id','mesa_id', 'nombre', 'tipo', 'precio'
     ];
 
     public function infoPlatillo(){
