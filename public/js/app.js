@@ -2165,7 +2165,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     formTitle: function formTitle() {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item';
+      return this.editedIndex === -1 ? 'Crear' : 'Editar';
     }
   },
   watch: {
@@ -2262,13 +2262,16 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editItem: function editItem(item) {
-      this.editedIndex = this.meseros.indexOf(item);
+      this.editedIndex = this.mesa_meseros.indexOf(item);
       this.editedItem = Object.assign({}, item);
+      console.log(this.editedItem.id);
       this.dialog = true;
     },
     deleteItem: function deleteItem(item) {
-      var index = this.meseros.indexOf(item);
-      confirm('Desea quitarle esta mesa a este mesero?') && this.meseros.splice(index, 1);
+      this.editedIndex = this.mesa_meseros.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      console.log(this.editedItem.id);
+      this.deleteMesaMesero();
     },
     close: function close() {
       var _this6 = this;
@@ -40047,7 +40050,7 @@ var render = function() {
     attrs: {
       headers: _vm.headers,
       items: _vm.mesa_meseros,
-      "sort-by": "calories"
+      "sort-by": "mesero_id"
     },
     scopedSlots: _vm._u([
       {
@@ -40125,7 +40128,7 @@ var render = function() {
                                 },
                                 on
                               ),
-                              [_vm._v("Nuevo producto")]
+                              [_vm._v("New Item")]
                             )
                           ]
                         }
@@ -40161,7 +40164,79 @@ var render = function() {
                                   [
                                     _c(
                                       "v-col",
-                                      { attrs: { cols: "6" } },
+                                      { attrs: { cols: "12" } },
+                                      [
+                                        _vm.formTitle == "Crear"
+                                          ? _c(
+                                              "v-container",
+                                              {
+                                                attrs: {
+                                                  fluid: "",
+                                                  "grid-list-xl": ""
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "v-layout",
+                                                  {
+                                                    attrs: {
+                                                      wrap: "",
+                                                      "align-center": ""
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "v-flex",
+                                                      {
+                                                        attrs: {
+                                                          xs12: "",
+                                                          sm3: "",
+                                                          "d-flex": ""
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("v-select", {
+                                                          attrs: {
+                                                            label: "Mesero",
+                                                            items: _vm.meseros,
+                                                            "item-value": "id",
+                                                            "item-text":
+                                                              "nombre"
+                                                          },
+                                                          model: {
+                                                            value:
+                                                              _vm.editedItem
+                                                                .mesero_id,
+                                                            callback: function(
+                                                              $$v
+                                                            ) {
+                                                              _vm.$set(
+                                                                _vm.editedItem,
+                                                                "mesero_id",
+                                                                $$v
+                                                              )
+                                                            },
+                                                            expression:
+                                                              "editedItem.mesero_id"
+                                                          }
+                                                        })
+                                                      ],
+                                                      1
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "12" } },
                                       [
                                         _c(
                                           "v-container",
@@ -40193,26 +40268,26 @@ var render = function() {
                                                   [
                                                     _c("v-select", {
                                                       attrs: {
-                                                        label: "Mesero",
-                                                        items: _vm.meseros,
+                                                        label: "Mesa#",
+                                                        items: _vm.mesas,
                                                         "item-value": "id",
-                                                        "item-text": "nombre"
+                                                        "item-text": "number"
                                                       },
                                                       model: {
                                                         value:
                                                           _vm.editedItem
-                                                            .mesero_id,
+                                                            .mesa_id,
                                                         callback: function(
                                                           $$v
                                                         ) {
                                                           _vm.$set(
                                                             _vm.editedItem,
-                                                            "mesero_id",
+                                                            "mesa_id",
                                                             $$v
                                                           )
                                                         },
                                                         expression:
-                                                          "editedItem.mesero_id"
+                                                          "editedItem.mesa_id"
                                                       }
                                                     })
                                                   ],
@@ -40226,79 +40301,7 @@ var render = function() {
                                         )
                                       ],
                                       1
-                                    ),
-                                    _vm._v(" "),
-                                    _vm.formTitle == "New Item"
-                                      ? _c(
-                                          "v-col",
-                                          { attrs: { cols: "6" } },
-                                          [
-                                            _c(
-                                              "v-container",
-                                              {
-                                                attrs: {
-                                                  fluid: "",
-                                                  "grid-list-xl": ""
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "v-layout",
-                                                  {
-                                                    attrs: {
-                                                      wrap: "",
-                                                      "align-center": ""
-                                                    }
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "v-flex",
-                                                      {
-                                                        attrs: {
-                                                          xs12: "",
-                                                          sm3: "",
-                                                          "d-flex": ""
-                                                        }
-                                                      },
-                                                      [
-                                                        _c("v-select", {
-                                                          attrs: {
-                                                            label: "Mesa#",
-                                                            items: _vm.mesas,
-                                                            "item-value": "id",
-                                                            "item-text":
-                                                              "number"
-                                                          },
-                                                          model: {
-                                                            value:
-                                                              _vm.editedItem
-                                                                .mesa_id,
-                                                            callback: function(
-                                                              $$v
-                                                            ) {
-                                                              _vm.$set(
-                                                                _vm.editedItem,
-                                                                "mesa_id",
-                                                                $$v
-                                                              )
-                                                            },
-                                                            expression:
-                                                              "editedItem.mesa_id"
-                                                          }
-                                                        })
-                                                      ],
-                                                      1
-                                                    )
-                                                  ],
-                                                  1
-                                                )
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      : _vm._e()
+                                    )
                                   ],
                                   1
                                 )
@@ -40329,7 +40332,7 @@ var render = function() {
                                 attrs: { color: "blue darken-1", text: "" },
                                 on: { click: _vm.save }
                               },
-                              [_vm._v("Gueardar")]
+                              [_vm._v("Guardar")]
                             )
                           ],
                           1

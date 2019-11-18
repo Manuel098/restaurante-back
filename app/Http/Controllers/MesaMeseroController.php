@@ -64,7 +64,9 @@ class MesaMeseroController extends Controller
     public function show($id)
     {
         try {
-            $mesMeseros = Mesa_Meseros::where('deleted_at',NULL);
+            $asd =array();
+            $mesMeseros = Mesa_Meseros::where('mesero_id',$id)->get();
+            array_push($asd,$mesMeseros);
             return response($mesMeseros, 201);
         } catch(QueryException $e) {
             return response( $e->getMessage(), 501);

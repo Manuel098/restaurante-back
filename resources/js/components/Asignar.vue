@@ -2,7 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="mesa_meseros"
-    sort-by="calories"
+    sort-by="mesero_id"
     class="elevation-1"
   >
     <template v-slot:top>
@@ -30,7 +30,7 @@
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark class="mb-2" v-on="on">Nuevo producto</v-btn>
+            <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
           </template>
           <v-card>
             <v-card-title>
@@ -40,9 +40,9 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                  <v-col cols="6" >
+                  <v-col  cols="12" >
                     <!-- <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field> -->
-                    <v-container fluid grid-list-xl>
+                    <v-container v-if="formTitle=='Crear'" fluid grid-list-xl>
                       <v-layout wrap align-center>
                       <v-flex xs12 sm3 d-flex>
                           <v-select
@@ -56,7 +56,7 @@
                       </v-layout>
                   </v-container>
                   </v-col>
-                  <v-col v-if="formTitle=='New Item'" cols="6" >
+                  <v-col cols="12" >
                     <!-- <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field> -->
                      <v-container fluid grid-list-xl>
                       <v-layout wrap align-center>
@@ -79,7 +79,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="close">Cancelar</v-btn>
-              <v-btn color="blue darken-1" text @click="save">Gueardar</v-btn>
+              <v-btn color="blue darken-1" text @click="save">Guardar</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -135,9 +135,9 @@
       },
     }),
 
-    computed: {
+   computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        return this.editedIndex === -1 ? 'Crear' : 'Editar'
       },
     },
 
@@ -201,7 +201,7 @@
         .catch(function(error) {
           console.log("Error" + error);
         });
-            axios
+        axios
         .get("/api/mesamesero")
         .then(response => {
           this.meseros = response.data;
@@ -248,14 +248,17 @@
         });
     },
       editItem (item) {
-        this.editedIndex = this.meseros.indexOf(item)
+        this.editedIndex = this.mesa_meseros.indexOf(item)
         this.editedItem = Object.assign({}, item)
+        console.log(this.editedItem.id);
         this.dialog = true
       },
 
       deleteItem (item) {
-        const index = this.meseros.indexOf(item)
-        confirm('Desea quitarle esta mesa a este mesero?') && this.meseros.splice(index, 1)
+       this.editedIndex = this.mesa_meseros.indexOf(item);
+        this.editedItem = Object.assign({}, item);
+        console.log(this.editedItem.id);
+        this.deleteMesaMesero();
       },
 
       close () {
