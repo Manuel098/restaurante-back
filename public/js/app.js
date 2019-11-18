@@ -2307,41 +2307,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.min.js");
-/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jspdf__WEBPACK_IMPORTED_MODULE_1__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.min.js");
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jspdf__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2410,46 +2379,82 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "generar cuenta",
   data: function data() {
-    return {
+    var _ref;
+
+    return _ref = {
+      mesa_id: [],
+      mesas: [],
+      cuenta: [],
+      cuentaM: [],
+      cuentaM1: [],
+      btnColor: [{
+        color: "success"
+      }, {
+        color: ""
+      }, {
+        color: ""
+      }, {
+        color: ""
+      }, {
+        color: ""
+      }, {
+        color: ""
+      }],
       headers: [{
         text: "Producto",
         align: "left",
-        value: "producto"
-      }, {
-        text: "Precio Unitario",
-        sortable: false,
-        value: "precio"
-      }, {
-        text: "Cantidad",
-        sortable: false,
-        value: "cantidad"
+        value: "nombre"
       }, {
         text: "Precio",
         sortable: false,
-        value: "total"
-      }],
-      cuenta: [{
-        producto: "Flan",
-        precio: 30,
-        cantidad: 1
+        value: "precio"
       }, {
-        producto: "Tacos",
-        precio: 60,
-        cantidad: 2
+        text: "Tipo",
+        sortable: false,
+        value: "tipo"
       }, {
-        producto: "Agua",
-        precio: 12,
-        cantidad: 3
-      }, {
-        producto: "Pastel",
-        precio: 25,
-        cantidad: 5
+        text: "Fehca",
+        sortable: false,
+        value: "created_at"
       }]
-    };
+    }, _defineProperty(_ref, "cuenta", []), _defineProperty(_ref, "cuentaA", []), _defineProperty(_ref, "producto", []), _ref;
+  },
+  mounted: function mounted() {
+    this.initialize();
+    this.getMesas();
   },
   methods: {
-    precio: function precio(num1, num2) {
-      var total = num1 * num2;
+    initialize: function initialize() {
+      var _this = this;
+
+      axios.get("/api/platillomesa").then(function (response) {
+        return _this.cuentaM1 = response["data"];
+      });
+    },
+    getMesas: function getMesas() {
+      var _this2 = this;
+
+      axios.get("/api/mesas").then(function (response) {
+        _this2.mesas = response.data;
+      })["catch"](function (error) {
+        console.log("Error: " + error);
+      });
+    },
+    getPlatilloMesaById: function getPlatilloMesaById() {
+      var _this3 = this;
+
+      axios.get("/api/platillomesa/" + this.mesa_id).then(function (response) {
+        //this.cuenta = response.data;
+        response.data.forEach(function (item) {
+          _this3.cuenta.push(item.info_platillo[0]);
+        });
+        console.log(_this3.cuenta);
+      })["catch"](function (error) {
+        console.log("Error: " + error);
+      });
+    },
+    precio: function precio(num1) {
+      var total = num1;
       return total;
     },
     subtotal: function (_subtotal) {
@@ -2466,7 +2471,7 @@ __webpack_require__.r(__webpack_exports__);
       window.subtotal = 0;
 
       for (var i = 0; i < this.cuenta.length; i++) {
-        subtotal = subtotal + this.cuenta[i].precio * this.cuenta[i].cantidad;
+        subtotal = subtotal + this.cuenta[i].precio;
       }
 
       return subtotal;
@@ -2476,7 +2481,7 @@ __webpack_require__.r(__webpack_exports__);
       return total;
     },
     terminar: function terminar() {
-      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1___default.a(); //var img = new Image();
+      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_0___default.a(); //var img = new Image();
       //img.src = 'logo.jpeg';
       //doc.addImage(img, 'jpeg', 20, 20,185,120);
 
@@ -2496,12 +2501,13 @@ __webpack_require__.r(__webpack_exports__);
       var orden = orden + 9;
 
       for (var i = 0; i < this.cuenta.length; i++) {
-        doc.text(20, orden, this.cuenta[i].producto);
-        var cantidad = String(this.cuenta[i].cantidad);
-        doc.text(125, orden, "x" + cantidad);
+        doc.text(20, orden, this.cuenta[i].nombre); //var cantidad = String(this.cuenta[i].cantidad);
+
+        var cantidad = "1"; //doc.text(125, orden, "x");
+
         var precio = String(this.cuenta[i].precio);
         doc.text(110, orden, precio);
-        var productoTotal = this.cuenta[i].cantidad * this.cuenta[i].precio;
+        var productoTotal = this.cuenta[i].precio;
         var prodTotal = String(productoTotal);
         doc.text(140, orden, prodTotal);
         orden = orden + 8;
@@ -2790,52 +2796,97 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      mesa1: 0,
+      mesa2: 0,
+      mesa3: 0,
+      mesa4: 0,
+      mesa5: 0,
+      mesa6: 0,
+      efectivo: [],
       headers: [{
-        text: "Concepto",
+        text: "Mesa",
         align: "left",
-        value: "concepto"
-      }, {
-        text: "Fecha",
-        value: "fecha"
-      }, {
-        text: "Hora",
-        value: "hora"
+        value: "mesa"
       }, {
         text: "Cantidad",
         value: "cantidad"
       }],
       datos: [{
-        concepto: "Compra de frutas",
-        fecha: "12-12-2019",
-        hora: "14:02",
-        cantidad: -1000
+        mesa: "Mesa 1",
+        cantidad: 0
       }, {
-        concepto: "Venta",
-        fecha: "",
-        hora: "",
-        cantidad: 3500
+        mesa: "Mesa 2",
+        cantidad: 0
       }, {
-        concepto: "Venta",
-        fecha: "",
-        hora: "",
-        cantidad: 500
+        mesa: "Mesa 3",
+        cantidad: 0
       }, {
-        concepto: "Pago de salario",
-        fecha: "",
-        hora: "",
-        cantidad: -1000
+        mesa: "Mesa 4",
+        cantidad: 0
       }, {
-        concepto: "Gastos",
-        fecha: "",
-        hora: "",
-        cantidad: -5000
+        mesa: "Mesa 5",
+        cantidad: 0
+      }, {
+        mesa: "Mesa 6",
+        cantidad: 0
       }]
     };
   },
+  mounted: function mounted() {
+    this.initialize();
+  },
   methods: {
+    initialize: function initialize() {
+      var _this = this;
+
+      axios.get("/api/platillomesa").then(function (response) {
+        return _this.efectivo = response["data"];
+      });
+    },
+    getPlatillos: function getPlatillos() {
+      this.datos[0].cantidad = 0;
+      this.datos[1].cantidad = 0;
+      this.datos[2].cantidad = 0;
+      this.datos[3].cantidad = 0;
+      this.datos[4].cantidad = 0;
+      this.datos[5].cantidad = 0;
+
+      for (var i = 0; i < this.efectivo[0].platillos.length; i++) {
+        this.mesa1 = this.mesa1 + this.efectivo[0].platillos[i].info_platillo[0].precio;
+      }
+
+      for (var i = 0; i < this.efectivo[1].platillos.length; i++) {
+        ;
+        this.mesa2 = this.mesa2 + this.efectivo[1].platillos[i].info_platillo[0].precio;
+      }
+
+      for (var i = 0; i < this.efectivo[2].platillos.length; i++) {
+        this.mesa3 = this.mesa3 + this.efectivo[2].platillos[i].info_platillo[0].precio;
+      }
+
+      for (var i = 0; i < this.efectivo[3].platillos.length; i++) {
+        this.mesa4 = this.mesa4 + this.efectivo[3].platillos[i].info_platillo[0].precio;
+      }
+
+      for (var i = 0; i < this.efectivo[4].platillos.length; i++) {
+        this.mesa5 = this.mesa5 + this.efectivo[4].platillos[i].info_platillo[0].precio;
+      }
+
+      for (var i = 0; i < this.efectivo[5].platillos.length; i++) {
+        this.mesa6 = this.mesa6 + this.efectivo[5].platillos[i].info_platillo[0].precio;
+      }
+
+      this.datos[0].cantidad = this.mesa1;
+      this.datos[1].cantidad = this.mesa2;
+      this.datos[2].cantidad = this.mesa3;
+      this.datos[3].cantidad = this.mesa4;
+      this.datos[4].cantidad = this.mesa5;
+      this.datos[5].cantidad = this.mesa6;
+    },
     totalGlobal: function totalGlobal() {
       var global = 0;
 
@@ -40443,126 +40494,31 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-container",
+        { attrs: { fluid: "", "grid-list-xl": "" } },
         [
           _c(
-            "v-row",
+            "v-layout",
+            { attrs: { wrap: "", "align-center": "" } },
             [
               _c(
-                "v-col",
-                {
-                  staticClass: "text-center",
-                  attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
-                },
+                "v-flex",
+                { attrs: { xs12: "", sm3: "", "d-flex": "" } },
                 [
-                  _c(
-                    "v-card",
-                    [
-                      _c("v-card-text", [
-                        _c("span", { staticClass: "title" }, [_vm._v("Mesa 1")])
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                {
-                  staticClass: "text-center",
-                  attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
-                },
-                [
-                  _c(
-                    "v-card",
-                    [
-                      _c("v-card-text", [
-                        _c("span", { staticClass: "title" }, [_vm._v("Mesa 2")])
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                {
-                  staticClass: "text-center",
-                  attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
-                },
-                [
-                  _c(
-                    "v-card",
-                    [
-                      _c("v-card-text", [
-                        _c("span", { staticClass: "title" }, [_vm._v("Mesa 3")])
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                {
-                  staticClass: "text-center",
-                  attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
-                },
-                [
-                  _c(
-                    "v-card",
-                    [
-                      _c("v-card-text", [
-                        _c("span", { staticClass: "title" }, [_vm._v("Mesa 4")])
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                {
-                  staticClass: "text-center",
-                  attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
-                },
-                [
-                  _c(
-                    "v-card",
-                    [
-                      _c("v-card-text", [
-                        _c("span", { staticClass: "title" }, [_vm._v("Mesa 5")])
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                {
-                  staticClass: "text-center",
-                  attrs: { cols: "12", sm: "4", md: "3", lg: "2" }
-                },
-                [
-                  _c(
-                    "v-card",
-                    [
-                      _c("v-card-text", [
-                        _c("span", { staticClass: "title" }, [_vm._v("Mesa 6")])
-                      ])
-                    ],
-                    1
-                  )
+                  _c("v-select", {
+                    attrs: {
+                      items: _vm.mesas,
+                      "item-value": "id",
+                      "item-text": "number"
+                    },
+                    on: { change: _vm.getPlatilloMesaById },
+                    model: {
+                      value: _vm.mesa_id,
+                      callback: function($$v) {
+                        _vm.mesa_id = $$v
+                      },
+                      expression: "mesa_id"
+                    }
+                  })
                 ],
                 1
               )
@@ -40580,7 +40536,7 @@ var render = function() {
             attrs: {
               headers: _vm.headers,
               items: _vm.cuenta,
-              "sort-by": _vm.producto,
+              "sort-by": "producto",
               "sort-desc": true,
               "disable-pagination": ""
             },
@@ -40589,11 +40545,7 @@ var render = function() {
                 key: "item.total",
                 fn: function(ref) {
                   var item = ref.item
-                  return [
-                    _c("p", [
-                      _vm._v(_vm._s(_vm.precio(item.cantidad, item.precio)))
-                    ])
-                  ]
+                  return [_c("p", [_vm._v(_vm._s(_vm.precio(item.precio)))])]
                 }
               }
             ])
@@ -40638,7 +40590,7 @@ var render = function() {
                 "v-flex",
                 { attrs: { row: "" } },
                 [
-                  _c("v-flex", [_c("p", [_vm._v("Total")])]),
+                  _c("v-flex", [_c("p", [_vm._v("Subotal (Sin IVA)")])]),
                   _vm._v(" "),
                   _c("v-flex", { staticClass: "justify-end text-end" }, [
                     _vm._v(_vm._s(_vm.totalFinal()))
@@ -40979,6 +40931,18 @@ var render = function() {
   return _c(
     "v-container",
     [
+      _c(
+        "v-btn",
+        {
+          on: {
+            click: function($event) {
+              return _vm.getPlatillos()
+            }
+          }
+        },
+        [_vm._v("Click")]
+      ),
+      _vm._v(" "),
       _c("v-flex", { staticClass: "text-center display-1" }, [
         _vm._v("\n        Efectivo Total\n        "),
         _c("hr", {
@@ -41015,7 +40979,7 @@ var render = function() {
             attrs: {
               headers: _vm.headers,
               items: _vm.datos,
-              "sort-by": _vm.fecha
+              "sort-by": "mesa"
             },
             scopedSlots: _vm._u([
               {
@@ -96092,8 +96056,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Proyectos\laravel\restaurante-back\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Proyectos\laravel\restaurante-back\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Acer\Documents\GitHub\restaurant-back\restaurante-back\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Acer\Documents\GitHub\restaurant-back\restaurante-back\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

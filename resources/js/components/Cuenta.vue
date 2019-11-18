@@ -5,51 +5,18 @@
       style="border-color:orange; width:90px; margin-left:auto; margin-right:auto; border-bottom-width:3px;"
     />
     <br />
-    <v-container>
-      <v-row>
-        <v-col class="text-center" cols="12" sm="4" md="3" lg="2">
-          <v-card :color="btnColor[0].color" @click="cuentaMesa1()">
-            <v-card-text>
-              <span class="title">Mesa 1</span>
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col class="text-center" cols="12" sm="4" md="3" lg="2">
-          <v-card :color="btnColor[1].color" @click="cuentaMesa2()">
-            <v-card-text>
-              <span class="title">Mesa 2</span>
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col class="text-center" cols="12" sm="4" md="3" lg="2">
-          <v-card :color="btnColor[2].color" @click="cuentaMesa3()">
-            <v-card-text>
-              <span class="title">Mesa 3</span>
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col class="text-center" cols="12" sm="4" md="3" lg="2">
-          <v-card :color="btnColor[3].color" @click="cuentaMesa4()">
-            <v-card-text>
-              <span class="title">Mesa 4</span>
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col class="text-center" cols="12" sm="4" md="3" lg="2">
-          <v-card :color="btnColor[4].color" @click="cuentaMesa5()">
-            <v-card-text>
-              <span class="title">Mesa 5</span>
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col class="text-center" cols="12" sm="4" md="3" lg="2">
-          <v-card :color="btnColor[5].color" @click="cuentaMesa6()">
-            <v-card-text>
-              <span class="title">Mesa 6</span>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
+      <v-container fluid grid-list-xl>
+        <v-layout wrap align-center>
+        <v-flex xs12 sm3 d-flex>
+            <v-select
+            :items="mesas"
+            v-model="mesa_id"
+            @change="getPlatilloMesaById"
+            item-value="id"
+            item-text="number"
+            ></v-select>
+        </v-flex>
+        </v-layout>
     </v-container>
     <v-flex>
       <v-data-table
@@ -60,7 +27,7 @@
         disable-pagination
       >
         <template v-slot:item.total="{ item }">
-          <p>{{precio(item.cantidad,item.precio)}}</p>
+          <p>{{precio(item.precio)}}</p>
         </template>
       </v-data-table>
       <v-flex>
@@ -81,7 +48,7 @@
         <hr />
         <v-flex row>
           <v-flex>
-            <p>Total</p>
+            <p>Subotal (Sin IVA)</p>
           </v-flex>
           <v-flex class="justify-end text-end">{{totalFinal()}}</v-flex>
         </v-flex>
@@ -101,20 +68,19 @@ export default {
   name: "generar cuenta",
   data() {
     return {
+      mesa_id:[],
+      mesas:[],
+      cuenta:[],
       cuentaM:[],
       cuentaM1:[],
       btnColor:[{color:"success"},{color:""},{color:""},{color:""},{color:""},{color:""}],
       headers: [
-        { text: "Producto", align: "left", value: "producto" },
-        { text: "Precio Unitario", sortable: false, value: "precio" },
-        { text: "Cantidad", sortable: false, value: "cantidad" },
-        { text: "Precio Total", sortable: false, value: "total" }
+        { text: "Producto", align: "left", value: "nombre" },
+        { text: "Precio", sortable: false, value: "precio" },
+        { text: "Tipo", sortable: false, value: "tipo" },
+        { text: "Fehca", sortable: false, value: "created_at" }
       ],
       cuenta: [
-        { producto: "Flan", precio: 30, cantidad: 1 },
-        { producto: "Tacos", precio: 60, cantidad: 2 },
-        { producto: "Agua", precio: 12, cantidad: 3 },
-        { producto: "Pastel", precio: 25, cantidad: 5 },
       ],
       cuentaA:[],
       producto:[],
@@ -122,111 +88,50 @@ export default {
   },
   mounted(){
     this.initialize();
+    this.getMesas();
   },
   methods: {
     initialize() {
-      axios.get("/api/platillomesa").then(response =>(this.cuentaM1 = response["data"]));
+      axios
+      .get(
+        "/api/platillomesa"
+        )
+        .then(response =>(
+          this.cuentaM1 = response["data"])
+          );
     },
-    cuentaMesa1(){
-      this.btnColor[0].color = "success";
-      this.btnColor[1].color = "";
-      this.btnColor[2].color = "";
-      this.btnColor[3].color = "";
-      this.btnColor[4].color = "";
-      this.btnColor[5].color = "";
-      this.producto =[];
-      this.precio =[];
-
-      for(var i=0;i<this.cuentaM[0].platillos.length;i++){
-          this.producto.push(this.cuentaM[0].platillos[i].info_platillo[0].nombre);
-          this.precio.push(this.cuentaM[0].platillos[i].info_platillo[0].precio);
-      }
+   getMesas: function() {
+      axios
+        .get("/api/mesas")
+        .then(response => {
+          this.mesas = response.data;
+        })
+        .catch(function(error) {
+          console.log("Error: " + error);
+        });
     },
-    cuentaMesa2(){
-      this.btnColor[0].color = "";
-      this.btnColor[1].color = "success";
-      this.btnColor[2].color = "";
-      this.btnColor[3].color = "";
-      this.btnColor[4].color = "";
-      this.btnColor[5].color = "";
-      this.producto =[];
-      this.precio =[];
-
-      for(var i=0;i<this.cuentaM[1].platillos.length;i++){
-          this.producto.push(this.cuentaM[1].platillos[i].info_platillo[0].nombre);
-          this.precio.push(this.cuentaM[1].platillos[i].info_platillo[0].precio);
-      }
+    getPlatilloMesaById: function() {
+      axios
+        .get("/api/platillomesa/"+ this.mesa_id)
+        .then(response => {
+          //this.cuenta = response.data;
+           response.data.forEach(item => {
+            this.cuenta.push(item.info_platillo[0]);
+          });
+          console.log(this.cuenta);
+        })
+        .catch(function(error) {
+          console.log("Error: " + error);
+        });
     },
-    cuentaMesa3(){
-      this.btnColor[0].color = "";
-      this.btnColor[1].color = "";
-      this.btnColor[2].color = "success";
-      this.btnColor[3].color = "";
-      this.btnColor[4].color = "";
-      this.btnColor[5].color = "";
-      this.producto =[];
-      this.precio =[];
-
-      for(var i=0;i<this.cuentaM[2].platillos.length;i++){
-          this.producto.push(this.cuentaM[2].platillos[i].info_platillo[0].nombre);
-          this.precio.push(this.cuentaM[2].platillos[i].info_platillo[0].precio);
-      }
-    },
-    cuentaMesa4(){
-      this.btnColor[0].color = "";
-      this.btnColor[1].color = "";
-      this.btnColor[2].color = "";
-      this.btnColor[3].color = "success";
-      this.btnColor[4].color = "";
-      this.btnColor[5].color = "";
-      this.producto =[];
-      this.precio =[];
-
-      for(var i=0;i<this.cuentaM[3].platillos.length;i++){
-          this.producto.push(this.cuentaM[3].platillos[i].info_platillo[0].nombre);
-          this.precio.push(this.cuentaM[3].platillos[i].info_platillo[0].precio);
-      }
-
-
-    },
-    cuentaMesa5(){
-      this.btnColor[0].color = "";
-      this.btnColor[1].color = "";
-      this.btnColor[2].color = "";
-      this.btnColor[3].color = "";
-      this.btnColor[4].color = "success";
-      this.btnColor[5].color = "";
-      this.producto =[];
-      this.precio =[];
-
-      for(var i=0;i<this.cuentaM[4].platillos.length;i++){
-          this.producto.push(this.cuentaM[4].platillos[i].info_platillo[0].nombre);
-          this.precio.push(this.cuentaM[4].platillos[i].info_platillo[0].precio);
-      }
-    },
-    cuentaMesa6(){
-      this.btnColor[0].color = "";
-      this.btnColor[1].color = "";
-      this.btnColor[2].color = "";
-      this.btnColor[3].color = "";
-      this.btnColor[4].color = "";
-      this.btnColor[5].color = "success";
-      this.producto =[];
-      this.precio =[];
-
-      for(var i=0;i<this.cuentaM[5].platillos.length;i++){
-          this.producto.push(this.cuentaM[5].platillos[i].info_platillo[0].nombre);
-          this.precio.push(this.cuentaM[5].platillos[i].info_platillo[0].precio);
-      }
-    },
-    precio(num1, num2) {
-      var total = num1 * num2;
+    precio(num1) {
+      var total = num1 ;
       return total;
     },
     subtotal() {
       window.subtotal = 0;
       for (var i = 0; i < this.cuenta.length; i++) {
-        subtotal = subtotal + this.cuenta[i].precio * this.cuenta[i].cantidad;
+        subtotal = subtotal + this.cuenta[i].precio;
       }
       return subtotal;
     },
@@ -258,12 +163,13 @@ export default {
       doc.line(20, orden, 150, orden);
       var orden = orden + 9;
       for (var i = 0; i < this.cuenta.length; i++) {
-        doc.text(20, orden, this.cuenta[i].producto);
-        var cantidad = String(this.cuenta[i].cantidad);
-        doc.text(125, orden, "x" + cantidad);
+        doc.text(20, orden, this.cuenta[i].nombre);
+        //var cantidad = String(this.cuenta[i].cantidad);
+        var cantidad ="1";
+        //doc.text(125, orden, "x");
         var precio = String(this.cuenta[i].precio);
         doc.text(110, orden, precio);
-        var productoTotal = this.cuenta[i].cantidad * this.cuenta[i].precio;
+        var productoTotal = this.cuenta[i].precio;
         var prodTotal = String(productoTotal);
         doc.text(140, orden, prodTotal);
         orden = orden + 8;
