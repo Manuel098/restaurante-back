@@ -55,7 +55,7 @@ class PlatilloMesaController extends Controller
     public function show($id)
     {
         try {
-            $platillo_mesa = Platillo_Mesa::findOrFail($id);
+            $platillo_mesa = Platillo_Mesa::with('infoPlatillo')->select('id', 'platillo_id', 'mesa_id')->get();
             return response($platillo_mesa, 201);
         } catch(QueryException $e) {
             return response( $e->getMessage(), 501);
