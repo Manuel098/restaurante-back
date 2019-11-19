@@ -1,4 +1,9 @@
 <template>
+  <v-flex>
+  <v-flex class="text-center display-1">Asignar Mesero</v-flex>
+  <hr
+    style="border-color:orange; width:90px; margin-left:auto; margin-right:auto; border-bottom-width:3px;"
+  />
   <v-data-table
     :headers="headers"
     :items="mesa_meseros"
@@ -104,6 +109,7 @@
       <v-btn color="primary" @click="initialize">Reset</v-btn>
     </template>
   </v-data-table>
+  </v-flex>
 </template>
 <script>
   export default {

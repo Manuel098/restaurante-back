@@ -1,6 +1,5 @@
 <template>
-    <v-container>
-        <v-btn @click="getPlatillos()" >Click</v-btn>
+    <v-container @mousemove="getPlatillos()">
         <v-flex class="text-center display-1">
             Efectivo Total
             <hr style="border-color:orange; width:210px; margin-left:auto; margin-right:auto; border-bottom-width:3px;"/>
@@ -31,6 +30,7 @@
 export default {
     data(){
         return{
+            mesaA:[],
             mesa1:0,mesa2:0,mesa3:0,mesa4:0,mesa5:0,mesa6:0,
             efectivo:[],
             headers:[
@@ -50,20 +50,27 @@ export default {
     },
     mounted(){
         this.initialize();
+        this.getPlatillos();
     },
     methods:{
         initialize() {
             axios
                 .get("/api/platillomesa")
                 .then(response => (this.efectivo = response["data"]));
-        },
-        getPlatillos(){
+            },
+        getPlatillos: function(){
             this.datos[0].cantidad = 0;
             this.datos[1].cantidad = 0;
             this.datos[2].cantidad = 0;
             this.datos[3].cantidad = 0;
             this.datos[4].cantidad = 0;
             this.datos[5].cantidad = 0;
+            this.mesa1 = 0;
+            this.mesa2 = 0;
+            this.mesa3 = 0;
+            this.mesa4 = 0;
+            this.mesa5 = 0;
+            this.mesa6 = 0;
             for(var i=0;i<this.efectivo[0].platillos.length;i++){
                 this.mesa1 = this.mesa1 + this.efectivo[0].platillos[i].info_platillo[0].precio;
             }

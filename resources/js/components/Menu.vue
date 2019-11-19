@@ -1,6 +1,10 @@
 <template>
   <v-container class="stlAll">
     <v-flex>
+      <v-flex class="text-center display-1">Menú</v-flex>
+      <hr
+        style="border-color:orange; width:90px; margin-left:auto; margin-right:auto; border-bottom-width:3px;"
+      />
       <v-container>
         <v-row>
           <v-col class="text-center" cols="12" sm="4" md="3" lg="2">
