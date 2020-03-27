@@ -17,7 +17,7 @@ class MeserosTableSeeder extends Seeder
         for($i=1; $i<7;$i++){
             Meseros::create([
                 'nombre' => $faker->text($maxNbChars = 15),
-                'number' => $faker->numberBetween($min = 1, $max = 10),
+                'number' => $faker->tollFreePhoneNumber(),
             ]);
         }
     }

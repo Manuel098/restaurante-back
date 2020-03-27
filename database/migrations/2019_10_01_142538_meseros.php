@@ -16,7 +16,7 @@ class Meseros extends Migration
         Schema::create('meseros', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->integer('number');
+            $table->string('number');
             $table->timestamps();
             $table->softDeletes();
         });

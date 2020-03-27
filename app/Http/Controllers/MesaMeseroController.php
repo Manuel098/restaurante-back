@@ -64,10 +64,15 @@ class MesaMeseroController extends Controller
     public function show($id)
     {
         try {
-            $asd =array();
-            $mesMeseros = Mesa_Meseros::where('mesero_id',$id)->get();
-            array_push($asd,$mesMeseros);
-            return response($mesMeseros, 201);
+            $data= array();
+            // $meseros = Meseros::with('pivot.mesas')->select('id','number','nombre')->get();
+            $mesMeseros = Mesa_Meseros::with('Platillos.infoPlatillo','mesero')->get();
+            foreach ($mesMeseros as $key => $value) {
+                if($value['mesero_id']==$id){
+                    array_push($data,$value);
+                }   
+            }
+            return response($data, 201);
         } catch(QueryException $e) {
             return response( $e->getMessage(), 501);
         }
@@ -105,7 +110,7 @@ class MesaMeseroController extends Controller
     public function destroy($id)
     {
         try{
-            $mesMeseros = Mesa_Meseros::findOrFail($id);
+            $mesMeseros = Mesa_Meseros::where('mesa_id',$id)->get();
             $mesMeseros->delete();
     
             return response("El recurso ha sido borrado",201);
