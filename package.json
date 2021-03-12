@@ -30,7 +30,7 @@
     "dependencies": {
         "alertify": "^0.3.0",
         "alertifyjs": "^1.11.4",
-        "jspdf": "^1.5.3",
+        "jspdf": "^2.3.1",
         "utilities-js": "^1.1.5",
         "v-mask": "^2.0.2",
         "vue-alertify": "^1.1.0",
